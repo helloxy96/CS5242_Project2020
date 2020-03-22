@@ -12,7 +12,7 @@ split = 'test'
 train_split =  os.path.join(COMP_PATH, 'splits/train.split1.bundle') #Train Split
 test_split  =  os.path.join(COMP_PATH, 'splits/test.split1.bundle') #Test Split
 GT_folder   =  os.path.join(COMP_PATH, 'groundTruth/') #Ground Truth Labels for each training video 
-DATA_folder =  os.path.join(COMP_PATH, 'data/') #Frame I3D features for all videos
+DATA_folder =  os.path.join(COMP_PATH, 'Data/') #Frame I3D features for all videos
 mapping_loc =  os.path.join(COMP_PATH, 'splits/mapping_bf.txt') 
 
 actions_dict = read_mapping_dict(mapping_loc)
@@ -32,4 +32,5 @@ Example - 30-150 = Id 0
           428-575 = Id 2
 Category is the Class of the Predicted Action
 '''
+
 
