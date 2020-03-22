@@ -7,9 +7,9 @@ COMP_PATH = ''
 training to load train set
 test to load test set
 '''
-split = 'test'
+split = 'training'
 #split = 'test'
-train_split =  os.path.join(COMP_PATH, 'splits/train.split1.bundle') #Train Split
+train_split =  os.path.join(COMP_PATH, 'splits/dev_train.split1.bundle') #Train Split
 test_split  =  os.path.join(COMP_PATH, 'splits/test.split1.bundle') #Test Split
 GT_folder   =  os.path.join(COMP_PATH, 'groundTruth/') #Ground Truth Labels for each training video 
 DATA_folder =  os.path.join(COMP_PATH, 'Data/') #Frame I3D features for all videos
@@ -32,5 +32,8 @@ Example - 30-150 = Id 0
           428-575 = Id 2
 Category is the Class of the Predicted Action
 '''
-
+print(len(data_feat))
+print(data_feat[0].shape)
+print(len(data_labels))
+print(data_labels[0])
 
