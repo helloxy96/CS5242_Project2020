@@ -1,5 +1,6 @@
 from read_datasetBreakfast import load_data, read_mapping_dict
 import os
+import numpy as np
 
 COMP_PATH = ''
 

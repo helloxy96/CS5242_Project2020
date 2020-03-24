@@ -36,9 +36,9 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
             data_breakfast.append(torch.tensor(curr_data,  dtype=torch.float64 ) )
             labels_breakfast.append(label_curr_video )
     
-        labels_uniq, labels_uniq_loc = get_label_bounds(labels_breakfast)
+        #labels_uniq, labels_uniq_loc = get_label_bounds(labels_breakfast)
         print("Finish Load the Training data and labels!!!")     
-        return  data_breakfast, labels_uniq
+        return  data_breakfast, labels_breakfast
     if datatype == 'test':
         data_breakfast = []
         
