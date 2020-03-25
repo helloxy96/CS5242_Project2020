@@ -98,10 +98,11 @@ for epoch in range(epochs):
 
     epoch_train_losses.append(train_losses)
     epoch_train_scores.append(train_scores)
-    A = np.array(epoch_train_losses)
-    B = np.array(epoch_train_scores)
-    np.save('./training_losses.npy', A)
-    np.save('./training_scores.npy', B)
+
+A = np.array(epoch_train_losses)
+B = np.array(epoch_train_scores)
+np.save('./training_losses.npy', A)
+np.save('./training_scores.npy', B)
 
 fig = plt.figure(figsize=(10, 4))
 plt.subplot(121)
