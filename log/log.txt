@@ -1,0 +1,19 @@
+Finish Load the Training data and labels!!!
+Train Epoch: 1 [0/174 (1%)]	Loss: 8.992269, Accu: 2.10%
+Train Epoch: 1 [10/174 (6%)]	Loss: 6.552912, Accu: 2.15%
+Train Epoch: 1 [20/174 (12%)]	Loss: 6.867344, Accu: 2.49%
+Train Epoch: 1 [30/174 (18%)]	Loss: 6.933770, Accu: 3.65%
+Train Epoch: 1 [40/174 (24%)]	Loss: 6.424290, Accu: 8.95%
+Train Epoch: 1 [50/174 (29%)]	Loss: 6.565671, Accu: 11.24%
+Train Epoch: 1 [60/174 (35%)]	Loss: 6.081651, Accu: 3.88%
+Train Epoch: 1 [70/174 (41%)]	Loss: 8.180409, Accu: 3.40%
+Train Epoch: 1 [80/174 (47%)]	Loss: 6.012429, Accu: 12.83%
+Train Epoch: 1 [90/174 (52%)]	Loss: 8.244810, Accu: 1.72%
+Train Epoch: 1 [100/174 (58%)]	Loss: 6.827103, Accu: 7.02%
+Train Epoch: 1 [110/174 (64%)]	Loss: 8.176789, Accu: 3.53%
+Train Epoch: 1 [120/174 (70%)]	Loss: 8.689128, Accu: 2.67%
+Train Epoch: 1 [130/174 (75%)]	Loss: 8.190566, Accu: 5.47%
+Train Epoch: 1 [140/174 (81%)]	Loss: 6.070658, Accu: 7.34%
+Train Epoch: 1 [150/174 (87%)]	Loss: 8.419039, Accu: 8.57%
+Train Epoch: 1 [160/174 (93%)]	Loss: 6.420960, Accu: 2.55%
+Train Epoch: 1 [170/174 (98%)]	Loss: 6.954105, Accu: 5.14%

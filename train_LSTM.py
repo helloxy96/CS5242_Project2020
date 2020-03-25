@@ -104,6 +104,8 @@ B = np.array(epoch_train_scores)
 np.save('./training_losses.npy', A)
 np.save('./training_scores.npy', B)
 
+torch.save(lstm.state_dict(), './trained/lstm_fulltrain.pkl')
+
 fig = plt.figure(figsize=(10, 4))
 plt.subplot(121)
 plt.plot(np.arange(1, epochs + 1), A[:, -1])  # train loss (on epoch end)
