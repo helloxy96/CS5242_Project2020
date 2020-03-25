@@ -34,4 +34,4 @@ class LSTM_Model(nn.Module):
         x = F.dropout(x, p=self.dropout_rate, training= self.training)
         x = self.fc2(x)
 
-        return F.log_softmax(x, dim=1)
+        return x

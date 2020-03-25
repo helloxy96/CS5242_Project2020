@@ -13,5 +13,5 @@ class VideoDataset(tud.Dataset):
 
     def __getitem__(self, idx):
         video = self.videos[idx]
-        label = torch.LongTensor([self.lables[idx]])
+        label = self.lables[idx]
         return video, label
