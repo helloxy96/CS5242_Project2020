@@ -31,10 +31,10 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
             curr_data = np.loadtxt(loc_curr_data, dtype='float32')
             label_curr_video = []
             for iik in range(len(curr_gt)):
-                label_curr_video.append( actions_dict[curr_gt[iik]] )
+                label_curr_video.append(actions_dict[curr_gt[iik]])
          
             data_breakfast.append(torch.tensor(curr_data,  dtype=torch.float64 ) )
-            labels_breakfast.append(label_curr_video )
+            labels_breakfast.append(np.asarray(label_curr_video) )
     
         #labels_uniq, labels_uniq_loc = get_label_bounds(labels_breakfast)
         print("Finish Load the Training data and labels!!!")     

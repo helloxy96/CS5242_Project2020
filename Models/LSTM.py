@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 class LSTM_Model(nn.Module):
     def __init__(self, I3D_feature_size = 400, hidden_rnn_layers = 3, hidden_rnn_nodes = 256, fc_dim = 128,
-                 dropout_rate=0.3, output_size=11):
+                 dropout_rate=0.3, output_size=48):
         super(LSTM_Model, self).__init__()
 
         self.input_size = I3D_feature_size
@@ -26,12 +26,12 @@ class LSTM_Model(nn.Module):
         self.fc2 = nn.Linear(self.fc_dim, self.output_size)
 
     def forward(self, x):
-        self.LSTM.flatten_parameters(x, None)
-        rnn_out, h_n, h_c = self.LSTM(x, None)
+        self.LSTM.flatten_parameters()
+        rnn_out, (h_n, h_c) = self.LSTM(x, None)
 
-        x = self.fc1(rnn_out[:,-1,:])
+        x = self.fc1(rnn_out[:,:,:])
         x = F.relu(x)
-        x = F.dropout(x, p=self.dropout_rate, training= self.train())
-        x = self.fc2
+        x = F.dropout(x, p=self.dropout_rate, training= self.training)
+        x = self.fc2(x)
 
-        return x
+        return F.log_softmax(x, dim=1)

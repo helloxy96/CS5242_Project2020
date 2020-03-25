@@ -1,6 +1,8 @@
 import torch.utils.data as tud
+import torch
 
-class VideoDataset(tud.dataset):
+
+class VideoDataset(tud.Dataset):
     def __init__(self, videos, labels):
         super(VideoDataset, self).__init__()
         self.videos = videos
@@ -11,7 +13,5 @@ class VideoDataset(tud.dataset):
 
     def __getitem__(self, idx):
         video = self.videos[idx]
-        label = self.lables[idx]
+        label = torch.LongTensor([self.lables[idx]])
         return video, label
-
-
