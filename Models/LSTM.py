@@ -29,7 +29,7 @@ class LSTM_Model(nn.Module):
         self.LSTM.flatten_parameters()
         rnn_out, (h_n, h_c) = self.LSTM(x, None)
 
-        x = self.fc1(rnn_out[:,:,:])
+        x = self.fc1(rnn_out[:,-1,:])
         x = F.relu(x)
         x = F.dropout(x, p=self.dropout_rate, training= self.training)
         x = self.fc2(x)
