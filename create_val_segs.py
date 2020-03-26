@@ -99,6 +99,7 @@ def random_chosen_segs(labels_segments_dict, n_seg_per_label, total_val_seg_num)
     :return:
     """
     chosen_seg_lists = []
+    random.seed(1)
     while len(chosen_seg_lists) < total_val_seg_num:
         for label, seg_idx in labels_segments_dict.items():
             if len(seg_idx) <= n_seg_per_label:
