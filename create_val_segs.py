@@ -128,6 +128,7 @@ if __name__ == '__main__':
 
     val_file_path = os.path.join(COMP_PATH, 'splits/val.split1.bundle')
     f = open(val_file_path, 'w+')
+    f.write('#bundle\n')
     for seg_path in content_select_val:
         f.write(seg_path)
         f.write('\n')
