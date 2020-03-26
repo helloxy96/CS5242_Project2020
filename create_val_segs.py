@@ -125,11 +125,21 @@ if __name__ == '__main__':
     content_all = file_ptr.read().split('\n')[1:-1]
     content_select_val = [content_all[idx] for idx in range(len(content_all)) if idx in chosen_seg_lists]
     print(content_select_val)
+    content_not_select_train = [content_all[idx] for idx in range(len(content_all)) if idx not in chosen_seg_lists]
+    print(content_not_select_train)
 
     val_file_path = os.path.join(COMP_PATH, 'splits/val.split1.bundle')
     f = open(val_file_path, 'w+')
     f.write('#bundle\n')
     for seg_path in content_select_val:
+        f.write(seg_path)
+        f.write('\n')
+    f.close()
+
+    val_file_path = os.path.join(COMP_PATH, 'splits/train.exclude_val.bundle')
+    f = open(val_file_path, 'w+')
+    f.write('#bundle\n')
+    for seg_path in content_not_select_train:
         f.write(seg_path)
         f.write('\n')
     f.close()
