@@ -107,7 +107,7 @@ def random_chosen_segs(labels_segments_dict, n_seg_per_label, total_val_seg_num)
                 chosen_seg_lists.extend(random.sample(seg_idx, n_seg_per_label))
         n_seg_per_label += 1
 
-    chosen_seg_lists = list(set(chosen_seg_lists))
+        chosen_seg_lists = list(set(chosen_seg_lists))
     chosen_seg_lists.sort()
     return chosen_seg_lists
 
