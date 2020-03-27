@@ -1,5 +1,5 @@
 
-from read_datasetBreakfast import load_data, read_mapping_dict
+from utils.read_datasetBreakfast import load_data, read_mapping_dict
 import os
 import numpy as np
 import torch

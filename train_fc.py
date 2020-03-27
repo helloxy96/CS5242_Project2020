@@ -1,5 +1,5 @@
 
-from read_datasetBreakfast import load_data, read_mapping_dict
+from utils.read_datasetBreakfast import load_data, read_mapping_dict
 import os
 import numpy as np
 import torch
@@ -11,7 +11,6 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import torch.nn as nn
 
-
 torch.cuda.set_device(2)
 
 COMP_PATH = ''
@@ -22,7 +21,7 @@ test to load test set
 '''
 split = 'training'
 #split = 'test'
-train_split =  os.path.join(COMP_PATH, 'splits/dev_train.split1.bundle') #Train Split
+train_split =  os.path.join(COMP_PATH, 'splits/train.exclude_val.bundle') #Train Split
 val_split   =  os.path.join(COMP_PATH, 'splits/val.split1.bundle')
 test_split  =  os.path.join(COMP_PATH, 'splits/test.split1.bundle') #Test Split
 GT_folder   =  os.path.join(COMP_PATH, 'groundTruth/') #Ground Truth Labels for each training video
@@ -48,8 +47,8 @@ print(x.shape, labels.shape)
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
 
-epochs = 10
-batch_size = 50
+epochs = 20
+batch_size = 100
 
 dataset = VideoDataset(x, labels)
 dataloader = tud.DataLoader(dataset, batch_size=batch_size, shuffle=True)
@@ -58,13 +57,16 @@ learning_rate = 1e-3
 log_interval = 1000
 
 model = nn.Sequential(
-    nn.Linear(400, 256),
+    nn.Linear(400, 2048),
+    nn.ReLU(),
+    nn.Dropout(0.2),
+    nn.Linear(2048, 256),
     nn.ReLU(),
     nn.Dropout(0.2),
     nn.Linear(256, 48)
 ).to(device).double()
 
-optimizer = torch.optim.Adam(list(model.parameters()), lr=learning_rate)
+optimizer = torch.optim.Adam(list(model.parameters()), lr=learning_rate, weight_decay=1e-6)
 
 
 def train(log_interval, model, device, train_loader, optimizer, epoch):
@@ -108,10 +110,10 @@ for epoch in range(epochs):
 
 A = np.array(epoch_train_losses)
 B = np.array(epoch_train_scores)
-np.save('./log/training_losses_fc.npy', A)
-np.save('./log/training_scores_fc.npy', B)
+np.save('./results/fc/training_losses_fc.npy', A)
+np.save('./results/fc/training_scores_fc.npy', B)
 
-torch.save(model.state_dict(), './trained/fc_devtrain.pkl')
+torch.save(model, './trained/fc_devtrain.pkl')
 
 
 

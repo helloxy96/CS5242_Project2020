@@ -15,12 +15,6 @@ import sys
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
 
-model = nn.Sequential(
-    nn.Linear(400, 256),
-    nn.ReLU(),
-    nn.Dropout(0.2),
-    nn.Linear(256, 48)
-).to(device).double()
 
 def evaluation(trained_path):
     split = 'training'
@@ -33,23 +27,23 @@ def evaluation(trained_path):
 
     actions_dict = read_mapping_dict(mapping_loc)
 
-    model.load_state_dict(torch.load(trained_path, map_location=torch.device(device)))
+    model = torch.load(trained_path, map_location=torch.device(device))
 
     # evaluate
     valid_feat, valid_labels = load_data( val_split, actions_dict, GT_folder, DATA_folder, datatype = split, target='frame') #
 
     valid_feat = torch.cat(valid_feat).reshape(-1, 400)
-    print(len(valid_labels))
+    # print(len(valid_labels))
 
     valid_labels = torch.cat(
         [torch.Tensor(labels) for labels in valid_labels]
     ).long().flatten()
 
-    print(valid_feat.shape, valid_labels.shape)
+    # print(valid_feat.shape, valid_labels.shape)
 
 
     val_dataset = VideoDataset(valid_feat, valid_labels)
-    val_dataloader = tud.DataLoader(val_dataset, batch_size=10, shuffle=False)
+    val_dataloader = tud.DataLoader(val_dataset, batch_size=50, shuffle=False)
 
     predict_labels = []
     groundTruth_labels = []

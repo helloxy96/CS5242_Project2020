@@ -1,0 +1,1 @@
+jupyter nbconvert --to script train.ipynb & python train.py > log/log.txt
