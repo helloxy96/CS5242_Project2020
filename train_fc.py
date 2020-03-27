@@ -11,6 +11,9 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import torch.nn as nn
 
+
+torch.cuda.set_device(2)
+
 COMP_PATH = ''
 
 ''' 
@@ -20,6 +23,7 @@ test to load test set
 split = 'training'
 #split = 'test'
 train_split =  os.path.join(COMP_PATH, 'splits/dev_train.split1.bundle') #Train Split
+val_split   =  os.path.join(COMP_PATH, 'splits/val.split1.bundle')
 test_split  =  os.path.join(COMP_PATH, 'splits/test.split1.bundle') #Test Split
 GT_folder   =  os.path.join(COMP_PATH, 'groundTruth/') #Ground Truth Labels for each training video
 DATA_folder =  os.path.join(COMP_PATH, 'Data/') #Frame I3D features for all videos
@@ -27,7 +31,7 @@ mapping_loc =  os.path.join(COMP_PATH, 'splits/mapping_bf.txt')
 
 actions_dict = read_mapping_dict(mapping_loc)
 
-data_feat, data_labels = load_data( train_split, actions_dict, GT_folder, DATA_folder, datatype = split) #
+data_feat, data_labels = load_data( train_split, actions_dict, GT_folder, DATA_folder, datatype = split, target='frame') #
 
 
 x = torch.cat(data_feat).reshape(-1, 400)
@@ -40,12 +44,12 @@ labels = torch.cat(
 print(x.shape, labels.shape)
 
 
-# model part
+# # model part
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
 
-epochs = 20
-batch_size = 100
+epochs = 10
+batch_size = 50
 
 dataset = VideoDataset(x, labels)
 dataloader = tud.DataLoader(dataset, batch_size=batch_size, shuffle=True)
@@ -61,7 +65,6 @@ model = nn.Sequential(
 ).to(device).double()
 
 optimizer = torch.optim.Adam(list(model.parameters()), lr=learning_rate)
-
 
 
 def train(log_interval, model, device, train_loader, optimizer, epoch):
@@ -110,6 +113,8 @@ np.save('./log/training_scores_fc.npy', B)
 
 torch.save(model.state_dict(), './trained/fc_devtrain.pkl')
 
+
+
 # fig = plt.figure(figsize=(10, 4))
 # plt.subplot(121)
 # plt.plot(np.arange(1, epochs + 1), A[:, -1])  # train loss (on epoch end)
@@ -125,3 +130,4 @@ torch.save(model.state_dict(), './trained/fc_devtrain.pkl')
 # plt.ylabel('accuracy')
 # plt.legend(['train'], loc="upper left")
 # plt.show()
+

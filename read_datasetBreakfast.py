@@ -14,7 +14,7 @@ def _isArrayLike(obj):
     return hasattr(obj, '__iter__') and hasattr(obj, '__len__')
 
  
-def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'training',):
+def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'training', target = 'segment'):
     file_ptr = open(split_load, 'r')
     content_all = file_ptr.read().split('\n')[1:-1]
     content_all = [x.strip('./data/groundTruth/') + 't' for x in content_all]
@@ -38,7 +38,11 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
 
         labels_uniq, labels_uniq_loc = get_label_bounds(labels_breakfast)
         print("Finish Load the Training data and labels!!!")
-        return data_breakfast, labels_uniq
+        
+        if target == 'frame':
+            return data_breakfast, labels_breakfast
+        else:
+            return data_breakfast, labels_uniq
     if datatype == 'test':
         data_breakfast = []
         
