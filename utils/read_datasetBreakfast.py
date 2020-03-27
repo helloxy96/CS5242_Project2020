@@ -42,7 +42,14 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
         if target == 'frame':
             return data_breakfast, labels_breakfast
         else:
-            return data_breakfast, labels_uniq
+            data_breakfast_segments = []
+            labels_breakfast_segments = []
+            for i in range(len(data_breakfast)):
+                idx = labels_uniq_loc[i]
+                for x in range(len(idx) - 1):
+                    data_breakfast_segments.append(data_breakfast[i][int(idx[x]): int(idx[x + 1])])
+                    labels_breakfast_segments.append((labels_uniq[i][x]))
+            return data_breakfast_segments, labels_breakfast_segments
     if datatype == 'test':
         data_breakfast = []
         
