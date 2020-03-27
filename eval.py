@@ -10,17 +10,30 @@ import torch.nn.functional as F
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import torch.nn as nn
+import sys
 
-def evaluation(model, trained_path):
+cuda_avail = torch.cuda.is_available()
+device = torch.device("cuda" if cuda_avail else "cpu")
+
+model = nn.Sequential(
+    nn.Linear(400, 256),
+    nn.ReLU(),
+    nn.Dropout(0.2),
+    nn.Linear(256, 48)
+).to(device).double()
+
+def evaluation(trained_path):
     split = 'training'
-    COMP_PATH = '../'
+    COMP_PATH = './'
 
     val_split   =  os.path.join(COMP_PATH, 'splits/val.split1.bundle')
     GT_folder   =  os.path.join(COMP_PATH, 'groundTruth/') #Ground Truth Labels for each training video
     DATA_folder =  os.path.join(COMP_PATH, 'Data/') #Frame I3D features for all videos
     mapping_loc =  os.path.join(COMP_PATH, 'splits/mapping_bf.txt')
 
-    model.load_state_dict(torch.load(trained_path))
+    actions_dict = read_mapping_dict(mapping_loc)
+
+    model.load_state_dict(torch.load(trained_path, map_location=torch.device(device)))
 
     # evaluate
     valid_feat, valid_labels = load_data( val_split, actions_dict, GT_folder, DATA_folder, datatype = split, target='frame') #
@@ -88,3 +101,9 @@ def get_most_frequent(arr):
     arr = np.array(arr)
     return np.argmax(np.bincount(arr.astype(np.int64)))
 
+if __name__ == "__main__":
+
+    trained_model_path = sys.argv[1]
+
+    print(trained_model_path)
+    evaluation(trained_model_path)
