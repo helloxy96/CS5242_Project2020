@@ -6,7 +6,7 @@ import torch.nn.utils as u
 
 class LSTM_Model(nn.Module):
     def __init__(self, I3D_feature_size = 400, hidden_rnn_layers = 3, hidden_rnn_nodes = 256, fc_dim = 128,
-                 dropout_rate=0.3, output_size=48):
+                 dropout_rate=0.3, output_size=48, bidirectional = False):
         super(LSTM_Model, self).__init__()
 
         self.input_size = I3D_feature_size
@@ -15,16 +15,18 @@ class LSTM_Model(nn.Module):
         self.fc_dim = fc_dim
         self.dropout_rate = dropout_rate
         self.output_size = output_size
+        self.bidirectional = bidirectional
 
         self.LSTM = nn.LSTM(
             input_size=self.input_size,
             hidden_size=self.hidden_rnn_nodes,
             num_layers=self.hidden_rnn_layers,
             batch_first=True,
-            bidirectional=True
+            bidirectional=self.bidirectional
         )
 
-        self.fc1 = nn.Linear(self.hidden_rnn_nodes, self.fc_dim)
+        fc_nodes = hidden_rnn_nodes * 2 if self.bidirectional else hidden_rnn_nodes
+        self.fc1 = nn.Linear(fc_nodes, self.fc_dim)
         self.fc2 = nn.Linear(self.fc_dim, self.output_size)
 
     def forward(self, x):
