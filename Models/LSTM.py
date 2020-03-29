@@ -20,7 +20,8 @@ class LSTM_Model(nn.Module):
             input_size=self.input_size,
             hidden_size=self.hidden_rnn_nodes,
             num_layers=self.hidden_rnn_layers,
-            batch_first=True
+            batch_first=True,
+            bidirectional=True
         )
 
         self.fc1 = nn.Linear(self.hidden_rnn_nodes, self.fc_dim)
