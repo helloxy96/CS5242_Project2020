@@ -20,7 +20,7 @@ test to load test set
 '''
 split = 'training'
 #split = 'test'
-train_split =  os.path.join(COMP_PATH, 'splits/train.exclude_val.bundle') #Train Split
+train_split =  os.path.join(COMP_PATH, 'splits/train.split1.bundle') #Train Split
 test_split  =  os.path.join(COMP_PATH, 'splits/test.split1.bundle') #Test Split
 GT_folder   =  os.path.join(COMP_PATH, 'groundTruth/') #Ground Truth Labels for each training video
 DATA_folder =  os.path.join(COMP_PATH, 'Data/') #Frame I3D features for all videos
@@ -72,8 +72,8 @@ def train(log_interval, model, device, train_loader, optimizer, epoch):
     return losses, scores
 
 
-val_dataset = VideoDataset(val_data_feat, val_data_labels)
-val_dataloader = tud.DataLoader(val_dataset)
+#val_dataset = VideoDataset(val_data_feat, val_data_labels)
+#val_dataloader = tud.DataLoader(val_dataset)
 
 def validation(model, device, test_loader):
     model.eval()
@@ -105,13 +105,13 @@ def validation(model, device, test_loader):
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
 
-lstm = LSTM_Model(hidden_rnn_layers = 2, hidden_rnn_nodes = 368, bidirectional=True, fc_dim=256).double().to(device)
+lstm = LSTM_Model(hidden_rnn_layers = 2, hidden_rnn_nodes = 368, bidirectional=False, fc_dim=128).double().to(device)
 optimizer = torch.optim.Adam(list(lstm.parameters()), lr=learning_rate, weight_decay=1e-6)
 
 # record training process
 epoch_train_losses = []
 epoch_train_scores = []
-epoch_test_scores = []
+#epoch_test_scores = []
 
 label_dict = b.generate_label_dictionary(data_feat, data_labels)
 total_segments = len(data_labels)
@@ -123,15 +123,16 @@ for epoch in range(epochs):
 
     epoch_train_losses.append(train_losses)
     epoch_train_scores.append(train_scores)
-    if (epoch + 1) % 10 == 0:
-        test_score = validation(lstm, device, val_dataloader)
-        epoch_test_scores.append(test_score)
+    #if (epoch + 1) % 10 == 0:
+    #    test_score = validation(lstm, device, val_dataloader)
+    #    epoch_test_scores.append(test_score)
+    if (epoch + 1) > 100 and (epoch + 1) % 20 == 0:
+        torch.save(model.state_dict(), "./trained/lstm/lstm_" + str(epoch + 1) + ".pt")
 
 date = datetime.datetime.now().date()
-torch.save(model.state_dict(), "./trained/lstm_" + date + ".pt")
 A = np.array(epoch_train_losses)
 B = np.array(epoch_train_scores)
-D = np.array(epoch_test_scores)
+#D = np.array(epoch_test_scores)
 np.save('./results/lstm/training_losses2_'+str(date)+'.npy', A)
 np.save('./results/lstm/training_scores2_'+str(date)+'.npy', B)
-np.save('./results/lstm/test_score2_'+str(date)+'.npy', D)
+#np.save('./results/lstm/test_score2_'+str(date)+'.npy', D)
