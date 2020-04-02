@@ -1,0 +1,569 @@
+Finish Load the Training data and labels!!!
+Finish Load the Training data and labels!!!
+5654 5654
+Train Epoch: 1 [1000/5654 (18%)]	Loss: 2.856064, Accu: 25.00%
+Train Epoch: 1 [2000/5654 (35%)]	Loss: 2.797030, Accu: 15.00%
+Train Epoch: 1 [3000/5654 (53%)]	Loss: 2.645259, Accu: 45.00%
+Train Epoch: 1 [4000/5654 (71%)]	Loss: 2.426587, Accu: 45.00%
+Train Epoch: 1 [5000/5654 (88%)]	Loss: 1.738690, Accu: 45.00%
+Train Epoch: 2 [1000/5654 (18%)]	Loss: 2.218028, Accu: 45.00%
+Train Epoch: 2 [2000/5654 (35%)]	Loss: 2.031085, Accu: 55.00%
+Train Epoch: 2 [3000/5654 (53%)]	Loss: 1.552183, Accu: 55.00%
+Train Epoch: 2 [4000/5654 (71%)]	Loss: 1.835324, Accu: 30.00%
+Train Epoch: 2 [5000/5654 (88%)]	Loss: 1.821614, Accu: 45.00%
+Train Epoch: 3 [1000/5654 (18%)]	Loss: 1.672259, Accu: 50.00%
+Train Epoch: 3 [2000/5654 (35%)]	Loss: 1.975003, Accu: 40.00%
+Train Epoch: 3 [3000/5654 (53%)]	Loss: 1.958403, Accu: 50.00%
+Train Epoch: 3 [4000/5654 (71%)]	Loss: 1.055997, Accu: 80.00%
+Train Epoch: 3 [5000/5654 (88%)]	Loss: 1.661012, Accu: 40.00%
+valid seg acc: 0.44765840220385666 
+
+Train Epoch: 4 [1000/5654 (18%)]	Loss: 1.462373, Accu: 50.00%
+Train Epoch: 4 [2000/5654 (35%)]	Loss: 0.819582, Accu: 75.00%
+Train Epoch: 4 [3000/5654 (53%)]	Loss: 1.302532, Accu: 55.00%
+Train Epoch: 4 [4000/5654 (71%)]	Loss: 2.011537, Accu: 30.00%
+Train Epoch: 4 [5000/5654 (88%)]	Loss: 1.084067, Accu: 65.00%
+Train Epoch: 5 [1000/5654 (18%)]	Loss: 1.400735, Accu: 70.00%
+Train Epoch: 5 [2000/5654 (35%)]	Loss: 1.186391, Accu: 50.00%
+Train Epoch: 5 [3000/5654 (53%)]	Loss: 1.199975, Accu: 75.00%
+Train Epoch: 5 [4000/5654 (71%)]	Loss: 1.470716, Accu: 50.00%
+Train Epoch: 5 [5000/5654 (88%)]	Loss: 1.376884, Accu: 50.00%
+Train Epoch: 6 [1000/5654 (18%)]	Loss: 1.126081, Accu: 60.00%
+Train Epoch: 6 [2000/5654 (35%)]	Loss: 1.325224, Accu: 50.00%
+Train Epoch: 6 [3000/5654 (53%)]	Loss: 1.333130, Accu: 60.00%
+Train Epoch: 6 [4000/5654 (71%)]	Loss: 1.428418, Accu: 60.00%
+Train Epoch: 6 [5000/5654 (88%)]	Loss: 0.979588, Accu: 75.00%
+valid seg acc: 0.5621900826446281 
+
+Train Epoch: 7 [1000/5654 (18%)]	Loss: 1.081345, Accu: 70.00%
+Train Epoch: 7 [2000/5654 (35%)]	Loss: 0.566804, Accu: 80.00%
+Train Epoch: 7 [3000/5654 (53%)]	Loss: 1.235769, Accu: 60.00%
+Train Epoch: 7 [4000/5654 (71%)]	Loss: 0.883165, Accu: 75.00%
+Train Epoch: 7 [5000/5654 (88%)]	Loss: 1.603158, Accu: 60.00%
+Train Epoch: 8 [1000/5654 (18%)]	Loss: 0.569994, Accu: 85.00%
+Train Epoch: 8 [2000/5654 (35%)]	Loss: 1.197132, Accu: 60.00%
+Train Epoch: 8 [3000/5654 (53%)]	Loss: 0.649367, Accu: 70.00%
+Train Epoch: 8 [4000/5654 (71%)]	Loss: 0.612619, Accu: 80.00%
+Train Epoch: 8 [5000/5654 (88%)]	Loss: 0.917785, Accu: 75.00%
+Train Epoch: 9 [1000/5654 (18%)]	Loss: 0.602657, Accu: 85.00%
+Train Epoch: 9 [2000/5654 (35%)]	Loss: 0.527108, Accu: 80.00%
+Train Epoch: 9 [3000/5654 (53%)]	Loss: 1.141763, Accu: 60.00%
+Train Epoch: 9 [4000/5654 (71%)]	Loss: 0.885325, Accu: 65.00%
+Train Epoch: 9 [5000/5654 (88%)]	Loss: 0.391096, Accu: 95.00%
+valid seg acc: 0.5561294765840219 
+
+Train Epoch: 10 [1000/5654 (18%)]	Loss: 1.049762, Accu: 65.00%
+Train Epoch: 10 [2000/5654 (35%)]	Loss: 0.616962, Accu: 70.00%
+Train Epoch: 10 [3000/5654 (53%)]	Loss: 0.799023, Accu: 70.00%
+Train Epoch: 10 [4000/5654 (71%)]	Loss: 1.299054, Accu: 55.00%
+Train Epoch: 10 [5000/5654 (88%)]	Loss: 0.451868, Accu: 75.00%
+Train Epoch: 11 [1000/5654 (18%)]	Loss: 0.622474, Accu: 80.00%
+Train Epoch: 11 [2000/5654 (35%)]	Loss: 0.721517, Accu: 80.00%
+Train Epoch: 11 [3000/5654 (53%)]	Loss: 0.582091, Accu: 90.00%
+Train Epoch: 11 [4000/5654 (71%)]	Loss: 1.094108, Accu: 75.00%
+Train Epoch: 11 [5000/5654 (88%)]	Loss: 0.588069, Accu: 80.00%
+Train Epoch: 12 [1000/5654 (18%)]	Loss: 0.281491, Accu: 100.00%
+Train Epoch: 12 [2000/5654 (35%)]	Loss: 1.165365, Accu: 60.00%
+Train Epoch: 12 [3000/5654 (53%)]	Loss: 0.520139, Accu: 80.00%
+Train Epoch: 12 [4000/5654 (71%)]	Loss: 0.459118, Accu: 85.00%
+Train Epoch: 12 [5000/5654 (88%)]	Loss: 0.515223, Accu: 90.00%
+valid seg acc: 0.6161845730027549 
+
+Train Epoch: 13 [1000/5654 (18%)]	Loss: 0.264317, Accu: 90.00%
+Train Epoch: 13 [2000/5654 (35%)]	Loss: 0.692774, Accu: 80.00%
+Train Epoch: 13 [3000/5654 (53%)]	Loss: 0.719598, Accu: 70.00%
+Train Epoch: 13 [4000/5654 (71%)]	Loss: 0.784194, Accu: 75.00%
+Train Epoch: 13 [5000/5654 (88%)]	Loss: 0.389718, Accu: 85.00%
+Train Epoch: 14 [1000/5654 (18%)]	Loss: 1.001705, Accu: 65.00%
+Train Epoch: 14 [2000/5654 (35%)]	Loss: 0.517602, Accu: 85.00%
+Train Epoch: 14 [3000/5654 (53%)]	Loss: 0.867422, Accu: 70.00%
+Train Epoch: 14 [4000/5654 (71%)]	Loss: 0.641314, Accu: 75.00%
+Train Epoch: 14 [5000/5654 (88%)]	Loss: 0.592929, Accu: 85.00%
+Train Epoch: 15 [1000/5654 (18%)]	Loss: 0.235703, Accu: 90.00%
+Train Epoch: 15 [2000/5654 (35%)]	Loss: 0.219202, Accu: 95.00%
+Train Epoch: 15 [3000/5654 (53%)]	Loss: 0.458436, Accu: 80.00%
+Train Epoch: 15 [4000/5654 (71%)]	Loss: 0.298869, Accu: 85.00%
+Train Epoch: 15 [5000/5654 (88%)]	Loss: 0.514681, Accu: 80.00%
+valid seg acc: 0.5972451790633612 
+
+Train Epoch: 16 [1000/5654 (18%)]	Loss: 0.404084, Accu: 80.00%
+Train Epoch: 16 [2000/5654 (35%)]	Loss: 0.417270, Accu: 90.00%
+Train Epoch: 16 [3000/5654 (53%)]	Loss: 0.339440, Accu: 95.00%
+Train Epoch: 16 [4000/5654 (71%)]	Loss: 0.311469, Accu: 85.00%
+Train Epoch: 16 [5000/5654 (88%)]	Loss: 0.550176, Accu: 75.00%
+Train Epoch: 17 [1000/5654 (18%)]	Loss: 0.237258, Accu: 95.00%
+Train Epoch: 17 [2000/5654 (35%)]	Loss: 0.067270, Accu: 100.00%
+Train Epoch: 17 [3000/5654 (53%)]	Loss: 0.241752, Accu: 90.00%
+Train Epoch: 17 [4000/5654 (71%)]	Loss: 0.363480, Accu: 90.00%
+Train Epoch: 17 [5000/5654 (88%)]	Loss: 0.410157, Accu: 90.00%
+Train Epoch: 18 [1000/5654 (18%)]	Loss: 0.421092, Accu: 80.00%
+Train Epoch: 18 [2000/5654 (35%)]	Loss: 0.596961, Accu: 80.00%
+Train Epoch: 18 [3000/5654 (53%)]	Loss: 0.242857, Accu: 95.00%
+Train Epoch: 18 [4000/5654 (71%)]	Loss: 0.149109, Accu: 100.00%
+Train Epoch: 18 [5000/5654 (88%)]	Loss: 0.109686, Accu: 100.00%
+valid seg acc: 0.6072314049586776 
+
+Train Epoch: 19 [1000/5654 (18%)]	Loss: 0.224658, Accu: 85.00%
+Train Epoch: 19 [2000/5654 (35%)]	Loss: 0.680572, Accu: 75.00%
+Train Epoch: 19 [3000/5654 (53%)]	Loss: 0.362562, Accu: 85.00%
+Train Epoch: 19 [4000/5654 (71%)]	Loss: 0.436655, Accu: 85.00%
+Train Epoch: 19 [5000/5654 (88%)]	Loss: 0.243251, Accu: 90.00%
+Train Epoch: 20 [1000/5654 (18%)]	Loss: 0.295318, Accu: 90.00%
+Train Epoch: 20 [2000/5654 (35%)]	Loss: 0.190037, Accu: 90.00%
+Train Epoch: 20 [3000/5654 (53%)]	Loss: 0.116138, Accu: 95.00%
+Train Epoch: 20 [4000/5654 (71%)]	Loss: 0.094634, Accu: 100.00%
+Train Epoch: 20 [5000/5654 (88%)]	Loss: 0.429314, Accu: 80.00%
+Train Epoch: 21 [1000/5654 (18%)]	Loss: 0.188321, Accu: 90.00%
+Train Epoch: 21 [2000/5654 (35%)]	Loss: 0.043401, Accu: 100.00%
+Train Epoch: 21 [3000/5654 (53%)]	Loss: 0.094266, Accu: 100.00%
+Train Epoch: 21 [4000/5654 (71%)]	Loss: 0.206037, Accu: 90.00%
+Train Epoch: 21 [5000/5654 (88%)]	Loss: 0.114412, Accu: 95.00%
+valid seg acc: 0.5670798898071626 
+
+Train Epoch: 22 [1000/5654 (18%)]	Loss: 0.085153, Accu: 100.00%
+Train Epoch: 22 [2000/5654 (35%)]	Loss: 0.130605, Accu: 95.00%
+Train Epoch: 22 [3000/5654 (53%)]	Loss: 0.313369, Accu: 80.00%
+Train Epoch: 22 [4000/5654 (71%)]	Loss: 0.450049, Accu: 90.00%
+Train Epoch: 22 [5000/5654 (88%)]	Loss: 0.263710, Accu: 90.00%
+Train Epoch: 23 [1000/5654 (18%)]	Loss: 0.423477, Accu: 85.00%
+Train Epoch: 23 [2000/5654 (35%)]	Loss: 0.257396, Accu: 90.00%
+Train Epoch: 23 [3000/5654 (53%)]	Loss: 0.109539, Accu: 95.00%
+Train Epoch: 23 [4000/5654 (71%)]	Loss: 0.093463, Accu: 95.00%
+Train Epoch: 23 [5000/5654 (88%)]	Loss: 0.343383, Accu: 85.00%
+Train Epoch: 24 [1000/5654 (18%)]	Loss: 0.421975, Accu: 95.00%
+Train Epoch: 24 [2000/5654 (35%)]	Loss: 0.142574, Accu: 95.00%
+Train Epoch: 24 [3000/5654 (53%)]	Loss: 0.069927, Accu: 100.00%
+Train Epoch: 24 [4000/5654 (71%)]	Loss: 0.421997, Accu: 80.00%
+Train Epoch: 24 [5000/5654 (88%)]	Loss: 0.177700, Accu: 95.00%
+valid seg acc: 0.6031680440771349 
+
+Train Epoch: 25 [1000/5654 (18%)]	Loss: 0.077051, Accu: 95.00%
+Train Epoch: 25 [2000/5654 (35%)]	Loss: 0.564731, Accu: 70.00%
+Train Epoch: 25 [3000/5654 (53%)]	Loss: 0.082551, Accu: 95.00%
+Train Epoch: 25 [4000/5654 (71%)]	Loss: 0.073374, Accu: 100.00%
+Train Epoch: 25 [5000/5654 (88%)]	Loss: 0.120690, Accu: 100.00%
+Train Epoch: 26 [1000/5654 (18%)]	Loss: 0.098140, Accu: 100.00%
+Train Epoch: 26 [2000/5654 (35%)]	Loss: 0.110993, Accu: 95.00%
+Train Epoch: 26 [3000/5654 (53%)]	Loss: 0.052987, Accu: 100.00%
+Train Epoch: 26 [4000/5654 (71%)]	Loss: 0.184550, Accu: 95.00%
+Train Epoch: 26 [5000/5654 (88%)]	Loss: 0.014312, Accu: 100.00%
+Train Epoch: 27 [1000/5654 (18%)]	Loss: 0.217478, Accu: 90.00%
+Train Epoch: 27 [2000/5654 (35%)]	Loss: 0.203323, Accu: 95.00%
+Train Epoch: 27 [3000/5654 (53%)]	Loss: 0.279505, Accu: 85.00%
+Train Epoch: 27 [4000/5654 (71%)]	Loss: 0.118877, Accu: 95.00%
+Train Epoch: 27 [5000/5654 (88%)]	Loss: 0.298277, Accu: 90.00%
+valid seg acc: 0.6199724517906335 
+
+Train Epoch: 28 [1000/5654 (18%)]	Loss: 0.049082, Accu: 100.00%
+Train Epoch: 28 [2000/5654 (35%)]	Loss: 0.149605, Accu: 95.00%
+Train Epoch: 28 [3000/5654 (53%)]	Loss: 0.090007, Accu: 95.00%
+Train Epoch: 28 [4000/5654 (71%)]	Loss: 0.102667, Accu: 95.00%
+Train Epoch: 28 [5000/5654 (88%)]	Loss: 0.154097, Accu: 90.00%
+Train Epoch: 29 [1000/5654 (18%)]	Loss: 0.046349, Accu: 100.00%
+Train Epoch: 29 [2000/5654 (35%)]	Loss: 0.105463, Accu: 95.00%
+Train Epoch: 29 [3000/5654 (53%)]	Loss: 0.328889, Accu: 85.00%
+Train Epoch: 29 [4000/5654 (71%)]	Loss: 0.584838, Accu: 80.00%
+Train Epoch: 29 [5000/5654 (88%)]	Loss: 0.342158, Accu: 90.00%
+Train Epoch: 30 [1000/5654 (18%)]	Loss: 0.425778, Accu: 85.00%
+Train Epoch: 30 [2000/5654 (35%)]	Loss: 0.306128, Accu: 90.00%
+Train Epoch: 30 [3000/5654 (53%)]	Loss: 0.058018, Accu: 95.00%
+Train Epoch: 30 [4000/5654 (71%)]	Loss: 0.084568, Accu: 100.00%
+Train Epoch: 30 [5000/5654 (88%)]	Loss: 0.070985, Accu: 100.00%
+valid seg acc: 0.6292011019283749 
+
+Train Epoch: 31 [1000/5654 (18%)]	Loss: 0.044836, Accu: 100.00%
+Train Epoch: 31 [2000/5654 (35%)]	Loss: 0.123176, Accu: 100.00%
+Train Epoch: 31 [3000/5654 (53%)]	Loss: 0.176397, Accu: 90.00%
+Train Epoch: 31 [4000/5654 (71%)]	Loss: 0.105912, Accu: 95.00%
+Train Epoch: 31 [5000/5654 (88%)]	Loss: 0.022282, Accu: 100.00%
+Train Epoch: 32 [1000/5654 (18%)]	Loss: 0.079591, Accu: 100.00%
+Train Epoch: 32 [2000/5654 (35%)]	Loss: 0.047067, Accu: 100.00%
+Train Epoch: 32 [3000/5654 (53%)]	Loss: 0.132908, Accu: 95.00%
+Train Epoch: 32 [4000/5654 (71%)]	Loss: 0.191962, Accu: 90.00%
+Train Epoch: 32 [5000/5654 (88%)]	Loss: 0.050333, Accu: 95.00%
+Train Epoch: 33 [1000/5654 (18%)]	Loss: 0.057544, Accu: 100.00%
+Train Epoch: 33 [2000/5654 (35%)]	Loss: 0.124462, Accu: 95.00%
+Train Epoch: 33 [3000/5654 (53%)]	Loss: 0.236138, Accu: 95.00%
+Train Epoch: 33 [4000/5654 (71%)]	Loss: 0.139390, Accu: 90.00%
+Train Epoch: 33 [5000/5654 (88%)]	Loss: 0.040288, Accu: 100.00%
+valid seg acc: 0.6161845730027549 
+
+Train Epoch: 34 [1000/5654 (18%)]	Loss: 0.023705, Accu: 100.00%
+Train Epoch: 34 [2000/5654 (35%)]	Loss: 0.416332, Accu: 90.00%
+Train Epoch: 34 [3000/5654 (53%)]	Loss: 0.008511, Accu: 100.00%
+Train Epoch: 34 [4000/5654 (71%)]	Loss: 0.152388, Accu: 90.00%
+Train Epoch: 34 [5000/5654 (88%)]	Loss: 0.100467, Accu: 95.00%
+Train Epoch: 35 [1000/5654 (18%)]	Loss: 0.359893, Accu: 90.00%
+Train Epoch: 35 [2000/5654 (35%)]	Loss: 0.122367, Accu: 95.00%
+Train Epoch: 35 [3000/5654 (53%)]	Loss: 0.039488, Accu: 100.00%
+Train Epoch: 35 [4000/5654 (71%)]	Loss: 0.025624, Accu: 100.00%
+Train Epoch: 35 [5000/5654 (88%)]	Loss: 0.311984, Accu: 90.00%
+Train Epoch: 36 [1000/5654 (18%)]	Loss: 0.215101, Accu: 95.00%
+Train Epoch: 36 [2000/5654 (35%)]	Loss: 0.035219, Accu: 100.00%
+Train Epoch: 36 [3000/5654 (53%)]	Loss: 0.109025, Accu: 90.00%
+Train Epoch: 36 [4000/5654 (71%)]	Loss: 0.142344, Accu: 95.00%
+Train Epoch: 36 [5000/5654 (88%)]	Loss: 0.303389, Accu: 90.00%
+valid seg acc: 0.6102617079889807 
+
+Train Epoch: 37 [1000/5654 (18%)]	Loss: 0.036917, Accu: 100.00%
+Train Epoch: 37 [2000/5654 (35%)]	Loss: 0.022396, Accu: 100.00%
+Train Epoch: 37 [3000/5654 (53%)]	Loss: 0.019538, Accu: 100.00%
+Train Epoch: 37 [4000/5654 (71%)]	Loss: 0.043475, Accu: 100.00%
+Train Epoch: 37 [5000/5654 (88%)]	Loss: 0.027514, Accu: 100.00%
+Train Epoch: 38 [1000/5654 (18%)]	Loss: 0.046398, Accu: 100.00%
+Train Epoch: 38 [2000/5654 (35%)]	Loss: 0.036911, Accu: 100.00%
+Train Epoch: 38 [3000/5654 (53%)]	Loss: 0.022687, Accu: 100.00%
+Train Epoch: 38 [4000/5654 (71%)]	Loss: 0.178031, Accu: 95.00%
+Train Epoch: 38 [5000/5654 (88%)]	Loss: 0.191404, Accu: 90.00%
+Train Epoch: 39 [1000/5654 (18%)]	Loss: 0.188012, Accu: 95.00%
+Train Epoch: 39 [2000/5654 (35%)]	Loss: 0.261216, Accu: 95.00%
+Train Epoch: 39 [3000/5654 (53%)]	Loss: 0.038923, Accu: 100.00%
+Train Epoch: 39 [4000/5654 (71%)]	Loss: 0.043713, Accu: 100.00%
+Train Epoch: 39 [5000/5654 (88%)]	Loss: 0.028890, Accu: 100.00%
+valid seg acc: 0.6123966942148761 
+
+Train Epoch: 40 [1000/5654 (18%)]	Loss: 0.025689, Accu: 100.00%
+Train Epoch: 40 [2000/5654 (35%)]	Loss: 0.045948, Accu: 100.00%
+Train Epoch: 40 [3000/5654 (53%)]	Loss: 0.162123, Accu: 95.00%
+Train Epoch: 40 [4000/5654 (71%)]	Loss: 0.111012, Accu: 95.00%
+Train Epoch: 40 [5000/5654 (88%)]	Loss: 0.209339, Accu: 90.00%
+Train Epoch: 41 [1000/5654 (18%)]	Loss: 0.107937, Accu: 95.00%
+Train Epoch: 41 [2000/5654 (35%)]	Loss: 0.208541, Accu: 95.00%
+Train Epoch: 41 [3000/5654 (53%)]	Loss: 0.035699, Accu: 100.00%
+Train Epoch: 41 [4000/5654 (71%)]	Loss: 0.020022, Accu: 100.00%
+Train Epoch: 41 [5000/5654 (88%)]	Loss: 0.019789, Accu: 100.00%
+Train Epoch: 42 [1000/5654 (18%)]	Loss: 0.017267, Accu: 100.00%
+Train Epoch: 42 [2000/5654 (35%)]	Loss: 0.030958, Accu: 100.00%
+Train Epoch: 42 [3000/5654 (53%)]	Loss: 0.024876, Accu: 100.00%
+Train Epoch: 42 [4000/5654 (71%)]	Loss: 0.046826, Accu: 95.00%
+Train Epoch: 42 [5000/5654 (88%)]	Loss: 0.041217, Accu: 100.00%
+valid seg acc: 0.6320936639118458 
+
+Train Epoch: 43 [1000/5654 (18%)]	Loss: 0.192629, Accu: 95.00%
+Train Epoch: 43 [2000/5654 (35%)]	Loss: 0.185330, Accu: 90.00%
+Train Epoch: 43 [3000/5654 (53%)]	Loss: 0.019568, Accu: 100.00%
+Train Epoch: 43 [4000/5654 (71%)]	Loss: 0.053127, Accu: 95.00%
+Train Epoch: 43 [5000/5654 (88%)]	Loss: 0.094268, Accu: 100.00%
+Train Epoch: 44 [1000/5654 (18%)]	Loss: 0.219454, Accu: 90.00%
+Train Epoch: 44 [2000/5654 (35%)]	Loss: 0.116173, Accu: 95.00%
+Train Epoch: 44 [3000/5654 (53%)]	Loss: 0.202307, Accu: 95.00%
+Train Epoch: 44 [4000/5654 (71%)]	Loss: 0.035655, Accu: 100.00%
+Train Epoch: 44 [5000/5654 (88%)]	Loss: 0.016901, Accu: 100.00%
+Train Epoch: 45 [1000/5654 (18%)]	Loss: 0.003979, Accu: 100.00%
+Train Epoch: 45 [2000/5654 (35%)]	Loss: 0.080510, Accu: 95.00%
+Train Epoch: 45 [3000/5654 (53%)]	Loss: 0.054795, Accu: 100.00%
+Train Epoch: 45 [4000/5654 (71%)]	Loss: 0.010079, Accu: 100.00%
+Train Epoch: 45 [5000/5654 (88%)]	Loss: 0.235705, Accu: 90.00%
+valid seg acc: 0.6319559228650138 
+
+Train Epoch: 46 [1000/5654 (18%)]	Loss: 0.045305, Accu: 100.00%
+Train Epoch: 46 [2000/5654 (35%)]	Loss: 0.004960, Accu: 100.00%
+Train Epoch: 46 [3000/5654 (53%)]	Loss: 0.012191, Accu: 100.00%
+Train Epoch: 46 [4000/5654 (71%)]	Loss: 0.171614, Accu: 90.00%
+Train Epoch: 46 [5000/5654 (88%)]	Loss: 0.208577, Accu: 90.00%
+Train Epoch: 47 [1000/5654 (18%)]	Loss: 0.057352, Accu: 100.00%
+Train Epoch: 47 [2000/5654 (35%)]	Loss: 0.047399, Accu: 100.00%
+Train Epoch: 47 [3000/5654 (53%)]	Loss: 0.305724, Accu: 90.00%
+Train Epoch: 47 [4000/5654 (71%)]	Loss: 0.030627, Accu: 100.00%
+Train Epoch: 47 [5000/5654 (88%)]	Loss: 0.053781, Accu: 95.00%
+Train Epoch: 48 [1000/5654 (18%)]	Loss: 0.008446, Accu: 100.00%
+Train Epoch: 48 [2000/5654 (35%)]	Loss: 0.006884, Accu: 100.00%
+Train Epoch: 48 [3000/5654 (53%)]	Loss: 0.043256, Accu: 95.00%
+Train Epoch: 48 [4000/5654 (71%)]	Loss: 0.018543, Accu: 100.00%
+Train Epoch: 48 [5000/5654 (88%)]	Loss: 0.026656, Accu: 100.00%
+valid seg acc: 0.6270661157024793 
+
+Train Epoch: 49 [1000/5654 (18%)]	Loss: 0.036673, Accu: 100.00%
+Train Epoch: 49 [2000/5654 (35%)]	Loss: 0.096968, Accu: 95.00%
+Train Epoch: 49 [3000/5654 (53%)]	Loss: 0.109153, Accu: 95.00%
+Train Epoch: 49 [4000/5654 (71%)]	Loss: 0.204079, Accu: 95.00%
+Train Epoch: 49 [5000/5654 (88%)]	Loss: 0.021575, Accu: 100.00%
+Train Epoch: 50 [1000/5654 (18%)]	Loss: 0.258821, Accu: 85.00%
+Train Epoch: 50 [2000/5654 (35%)]	Loss: 0.302042, Accu: 85.00%
+Train Epoch: 50 [3000/5654 (53%)]	Loss: 0.008283, Accu: 100.00%
+Train Epoch: 50 [4000/5654 (71%)]	Loss: 0.126504, Accu: 95.00%
+Train Epoch: 50 [5000/5654 (88%)]	Loss: 0.119389, Accu: 95.00%
+Train Epoch: 51 [1000/5654 (18%)]	Loss: 0.012633, Accu: 100.00%
+Train Epoch: 51 [2000/5654 (35%)]	Loss: 0.326628, Accu: 90.00%
+Train Epoch: 51 [3000/5654 (53%)]	Loss: 0.020233, Accu: 100.00%
+Train Epoch: 51 [4000/5654 (71%)]	Loss: 0.001976, Accu: 100.00%
+Train Epoch: 51 [5000/5654 (88%)]	Loss: 0.037880, Accu: 100.00%
+valid seg acc: 0.6231404958677685 
+
+Train Epoch: 52 [1000/5654 (18%)]	Loss: 0.038977, Accu: 100.00%
+Train Epoch: 52 [2000/5654 (35%)]	Loss: 0.043800, Accu: 100.00%
+Train Epoch: 52 [3000/5654 (53%)]	Loss: 0.019943, Accu: 100.00%
+Train Epoch: 52 [4000/5654 (71%)]	Loss: 0.010279, Accu: 100.00%
+Train Epoch: 52 [5000/5654 (88%)]	Loss: 0.063172, Accu: 100.00%
+Train Epoch: 53 [1000/5654 (18%)]	Loss: 0.046419, Accu: 100.00%
+Train Epoch: 53 [2000/5654 (35%)]	Loss: 0.035817, Accu: 100.00%
+Train Epoch: 53 [3000/5654 (53%)]	Loss: 0.166157, Accu: 95.00%
+Train Epoch: 53 [4000/5654 (71%)]	Loss: 0.036775, Accu: 100.00%
+Train Epoch: 53 [5000/5654 (88%)]	Loss: 0.009878, Accu: 100.00%
+Train Epoch: 54 [1000/5654 (18%)]	Loss: 0.010812, Accu: 100.00%
+Train Epoch: 54 [2000/5654 (35%)]	Loss: 0.009706, Accu: 100.00%
+Train Epoch: 54 [3000/5654 (53%)]	Loss: 0.253617, Accu: 90.00%
+Train Epoch: 54 [4000/5654 (71%)]	Loss: 0.123516, Accu: 95.00%
+Train Epoch: 54 [5000/5654 (88%)]	Loss: 0.006288, Accu: 100.00%
+valid seg acc: 0.6426997245179065 
+
+Train Epoch: 55 [1000/5654 (18%)]	Loss: 0.667998, Accu: 80.00%
+Train Epoch: 55 [2000/5654 (35%)]	Loss: 0.522859, Accu: 90.00%
+Train Epoch: 55 [3000/5654 (53%)]	Loss: 0.014633, Accu: 100.00%
+Train Epoch: 55 [4000/5654 (71%)]	Loss: 0.014275, Accu: 100.00%
+Train Epoch: 55 [5000/5654 (88%)]	Loss: 0.058679, Accu: 95.00%
+Train Epoch: 56 [1000/5654 (18%)]	Loss: 0.310794, Accu: 85.00%
+Train Epoch: 56 [2000/5654 (35%)]	Loss: 0.165416, Accu: 95.00%
+Train Epoch: 56 [3000/5654 (53%)]	Loss: 0.040551, Accu: 100.00%
+Train Epoch: 56 [4000/5654 (71%)]	Loss: 0.021685, Accu: 100.00%
+Train Epoch: 56 [5000/5654 (88%)]	Loss: 0.051720, Accu: 95.00%
+Train Epoch: 57 [1000/5654 (18%)]	Loss: 0.139385, Accu: 95.00%
+Train Epoch: 57 [2000/5654 (35%)]	Loss: 0.017047, Accu: 100.00%
+Train Epoch: 57 [3000/5654 (53%)]	Loss: 0.007541, Accu: 100.00%
+Train Epoch: 57 [4000/5654 (71%)]	Loss: 0.003553, Accu: 100.00%
+Train Epoch: 57 [5000/5654 (88%)]	Loss: 0.027186, Accu: 100.00%
+valid seg acc: 0.628168044077135 
+
+Train Epoch: 58 [1000/5654 (18%)]	Loss: 0.013424, Accu: 100.00%
+Train Epoch: 58 [2000/5654 (35%)]	Loss: 0.125225, Accu: 95.00%
+Train Epoch: 58 [3000/5654 (53%)]	Loss: 0.064647, Accu: 95.00%
+Train Epoch: 58 [4000/5654 (71%)]	Loss: 0.009934, Accu: 100.00%
+Train Epoch: 58 [5000/5654 (88%)]	Loss: 0.015394, Accu: 100.00%
+Train Epoch: 59 [1000/5654 (18%)]	Loss: 0.052707, Accu: 95.00%
+Train Epoch: 59 [2000/5654 (35%)]	Loss: 0.045515, Accu: 95.00%
+Train Epoch: 59 [3000/5654 (53%)]	Loss: 0.194439, Accu: 95.00%
+Train Epoch: 59 [4000/5654 (71%)]	Loss: 0.054701, Accu: 100.00%
+Train Epoch: 59 [5000/5654 (88%)]	Loss: 0.013269, Accu: 100.00%
+Train Epoch: 60 [1000/5654 (18%)]	Loss: 0.002537, Accu: 100.00%
+Train Epoch: 60 [2000/5654 (35%)]	Loss: 0.002091, Accu: 100.00%
+Train Epoch: 60 [3000/5654 (53%)]	Loss: 0.005024, Accu: 100.00%
+Train Epoch: 60 [4000/5654 (71%)]	Loss: 0.079314, Accu: 95.00%
+Train Epoch: 60 [5000/5654 (88%)]	Loss: 0.016449, Accu: 100.00%
+valid seg acc: 0.6373966942148761 
+
+Train Epoch: 61 [1000/5654 (18%)]	Loss: 0.001362, Accu: 100.00%
+Train Epoch: 61 [2000/5654 (35%)]	Loss: 0.012358, Accu: 100.00%
+Train Epoch: 61 [3000/5654 (53%)]	Loss: 0.125700, Accu: 95.00%
+Train Epoch: 61 [4000/5654 (71%)]	Loss: 0.002513, Accu: 100.00%
+Train Epoch: 61 [5000/5654 (88%)]	Loss: 0.012747, Accu: 100.00%
+Train Epoch: 62 [1000/5654 (18%)]	Loss: 0.145019, Accu: 90.00%
+Train Epoch: 62 [2000/5654 (35%)]	Loss: 0.449469, Accu: 95.00%
+Train Epoch: 62 [3000/5654 (53%)]	Loss: 0.005274, Accu: 100.00%
+Train Epoch: 62 [4000/5654 (71%)]	Loss: 0.063423, Accu: 100.00%
+Train Epoch: 62 [5000/5654 (88%)]	Loss: 0.037868, Accu: 100.00%
+Train Epoch: 63 [1000/5654 (18%)]	Loss: 0.004721, Accu: 100.00%
+Train Epoch: 63 [2000/5654 (35%)]	Loss: 0.032227, Accu: 100.00%
+Train Epoch: 63 [3000/5654 (53%)]	Loss: 0.007209, Accu: 100.00%
+Train Epoch: 63 [4000/5654 (71%)]	Loss: 0.013160, Accu: 100.00%
+Train Epoch: 63 [5000/5654 (88%)]	Loss: 0.013309, Accu: 100.00%
+valid seg acc: 0.6480027548209369 
+
+Train Epoch: 64 [1000/5654 (18%)]	Loss: 0.035792, Accu: 100.00%
+Train Epoch: 64 [2000/5654 (35%)]	Loss: 0.184722, Accu: 95.00%
+Train Epoch: 64 [3000/5654 (53%)]	Loss: 0.015480, Accu: 100.00%
+Train Epoch: 64 [4000/5654 (71%)]	Loss: 0.043377, Accu: 95.00%
+Train Epoch: 64 [5000/5654 (88%)]	Loss: 0.216215, Accu: 95.00%
+Train Epoch: 65 [1000/5654 (18%)]	Loss: 0.014137, Accu: 100.00%
+Train Epoch: 65 [2000/5654 (35%)]	Loss: 0.009332, Accu: 100.00%
+Train Epoch: 65 [3000/5654 (53%)]	Loss: 0.013697, Accu: 100.00%
+Train Epoch: 65 [4000/5654 (71%)]	Loss: 0.314595, Accu: 90.00%
+Train Epoch: 65 [5000/5654 (88%)]	Loss: 0.019719, Accu: 100.00%
+Train Epoch: 66 [1000/5654 (18%)]	Loss: 0.009668, Accu: 100.00%
+Train Epoch: 66 [2000/5654 (35%)]	Loss: 0.014245, Accu: 100.00%
+Train Epoch: 66 [3000/5654 (53%)]	Loss: 0.060411, Accu: 100.00%
+Train Epoch: 66 [4000/5654 (71%)]	Loss: 0.006011, Accu: 100.00%
+Train Epoch: 66 [5000/5654 (88%)]	Loss: 0.003102, Accu: 100.00%
+valid seg acc: 0.6290633608815428 
+
+Train Epoch: 67 [1000/5654 (18%)]	Loss: 0.021675, Accu: 100.00%
+Train Epoch: 67 [2000/5654 (35%)]	Loss: 0.027318, Accu: 100.00%
+Train Epoch: 67 [3000/5654 (53%)]	Loss: 0.183350, Accu: 95.00%
+Train Epoch: 67 [4000/5654 (71%)]	Loss: 0.001461, Accu: 100.00%
+Train Epoch: 67 [5000/5654 (88%)]	Loss: 0.026229, Accu: 100.00%
+Train Epoch: 68 [1000/5654 (18%)]	Loss: 0.078834, Accu: 95.00%
+Train Epoch: 68 [2000/5654 (35%)]	Loss: 0.021309, Accu: 100.00%
+Train Epoch: 68 [3000/5654 (53%)]	Loss: 0.037939, Accu: 100.00%
+Train Epoch: 68 [4000/5654 (71%)]	Loss: 0.041813, Accu: 100.00%
+Train Epoch: 68 [5000/5654 (88%)]	Loss: 0.012419, Accu: 100.00%
+Train Epoch: 69 [1000/5654 (18%)]	Loss: 0.150329, Accu: 95.00%
+Train Epoch: 69 [2000/5654 (35%)]	Loss: 0.229944, Accu: 95.00%
+Train Epoch: 69 [3000/5654 (53%)]	Loss: 0.208750, Accu: 90.00%
+Train Epoch: 69 [4000/5654 (71%)]	Loss: 0.001165, Accu: 100.00%
+Train Epoch: 69 [5000/5654 (88%)]	Loss: 0.002672, Accu: 100.00%
+valid seg acc: 0.6367768595041321 
+
+Train Epoch: 70 [1000/5654 (18%)]	Loss: 0.002161, Accu: 100.00%
+Train Epoch: 70 [2000/5654 (35%)]	Loss: 0.004219, Accu: 100.00%
+Train Epoch: 70 [3000/5654 (53%)]	Loss: 0.016417, Accu: 100.00%
+Train Epoch: 70 [4000/5654 (71%)]	Loss: 0.027714, Accu: 100.00%
+Train Epoch: 70 [5000/5654 (88%)]	Loss: 0.001809, Accu: 100.00%
+Train Epoch: 71 [1000/5654 (18%)]	Loss: 0.009890, Accu: 100.00%
+Train Epoch: 71 [2000/5654 (35%)]	Loss: 0.087610, Accu: 95.00%
+Train Epoch: 71 [3000/5654 (53%)]	Loss: 0.293034, Accu: 95.00%
+Train Epoch: 71 [4000/5654 (71%)]	Loss: 0.001148, Accu: 100.00%
+Train Epoch: 71 [5000/5654 (88%)]	Loss: 0.028205, Accu: 100.00%
+Train Epoch: 72 [1000/5654 (18%)]	Loss: 0.052324, Accu: 100.00%
+Train Epoch: 72 [2000/5654 (35%)]	Loss: 0.017460, Accu: 100.00%
+Train Epoch: 72 [3000/5654 (53%)]	Loss: 0.102282, Accu: 95.00%
+Train Epoch: 72 [4000/5654 (71%)]	Loss: 0.380113, Accu: 85.00%
+Train Epoch: 72 [5000/5654 (88%)]	Loss: 0.052724, Accu: 95.00%
+valid seg acc: 0.6284435261707987 
+
+Train Epoch: 73 [1000/5654 (18%)]	Loss: 0.007441, Accu: 100.00%
+Train Epoch: 73 [2000/5654 (35%)]	Loss: 0.223097, Accu: 90.00%
+Train Epoch: 73 [3000/5654 (53%)]	Loss: 0.006889, Accu: 100.00%
+Train Epoch: 73 [4000/5654 (71%)]	Loss: 0.005621, Accu: 100.00%
+Train Epoch: 73 [5000/5654 (88%)]	Loss: 0.000512, Accu: 100.00%
+Train Epoch: 74 [1000/5654 (18%)]	Loss: 0.175649, Accu: 95.00%
+Train Epoch: 74 [2000/5654 (35%)]	Loss: 0.032987, Accu: 100.00%
+Train Epoch: 74 [3000/5654 (53%)]	Loss: 0.035017, Accu: 100.00%
+Train Epoch: 74 [4000/5654 (71%)]	Loss: 0.001227, Accu: 100.00%
+Train Epoch: 74 [5000/5654 (88%)]	Loss: 0.004776, Accu: 100.00%
+Train Epoch: 75 [1000/5654 (18%)]	Loss: 0.001757, Accu: 100.00%
+Train Epoch: 75 [2000/5654 (35%)]	Loss: 0.001307, Accu: 100.00%
+Train Epoch: 75 [3000/5654 (53%)]	Loss: 0.012575, Accu: 100.00%
+Train Epoch: 75 [4000/5654 (71%)]	Loss: 0.005927, Accu: 100.00%
+Train Epoch: 75 [5000/5654 (88%)]	Loss: 0.001600, Accu: 100.00%
+valid seg acc: 0.6298209366391184 
+
+Train Epoch: 76 [1000/5654 (18%)]	Loss: 0.006547, Accu: 100.00%
+Train Epoch: 76 [2000/5654 (35%)]	Loss: 0.090541, Accu: 95.00%
+Train Epoch: 76 [3000/5654 (53%)]	Loss: 0.001443, Accu: 100.00%
+Train Epoch: 76 [4000/5654 (71%)]	Loss: 0.018834, Accu: 100.00%
+Train Epoch: 76 [5000/5654 (88%)]	Loss: 0.094111, Accu: 100.00%
+Train Epoch: 77 [1000/5654 (18%)]	Loss: 0.060560, Accu: 95.00%
+Train Epoch: 77 [2000/5654 (35%)]	Loss: 0.027260, Accu: 100.00%
+Train Epoch: 77 [3000/5654 (53%)]	Loss: 0.002623, Accu: 100.00%
+Train Epoch: 77 [4000/5654 (71%)]	Loss: 0.143766, Accu: 95.00%
+Train Epoch: 77 [5000/5654 (88%)]	Loss: 0.004875, Accu: 100.00%
+Train Epoch: 78 [1000/5654 (18%)]	Loss: 0.014120, Accu: 100.00%
+Train Epoch: 78 [2000/5654 (35%)]	Loss: 0.027863, Accu: 100.00%
+Train Epoch: 78 [3000/5654 (53%)]	Loss: 0.001160, Accu: 100.00%
+Train Epoch: 78 [4000/5654 (71%)]	Loss: 0.002720, Accu: 100.00%
+Train Epoch: 78 [5000/5654 (88%)]	Loss: 0.036801, Accu: 100.00%
+valid seg acc: 0.6420798898071624 
+
+Train Epoch: 79 [1000/5654 (18%)]	Loss: 0.000727, Accu: 100.00%
+Train Epoch: 79 [2000/5654 (35%)]	Loss: 0.351783, Accu: 85.00%
+Train Epoch: 79 [3000/5654 (53%)]	Loss: 0.001336, Accu: 100.00%
+Train Epoch: 79 [4000/5654 (71%)]	Loss: 0.015736, Accu: 100.00%
+Train Epoch: 79 [5000/5654 (88%)]	Loss: 0.042080, Accu: 95.00%
+Train Epoch: 80 [1000/5654 (18%)]	Loss: 0.181594, Accu: 95.00%
+Train Epoch: 80 [2000/5654 (35%)]	Loss: 0.016880, Accu: 100.00%
+Train Epoch: 80 [3000/5654 (53%)]	Loss: 0.016069, Accu: 100.00%
+Train Epoch: 80 [4000/5654 (71%)]	Loss: 0.002629, Accu: 100.00%
+Train Epoch: 80 [5000/5654 (88%)]	Loss: 0.076225, Accu: 95.00%
+Train Epoch: 81 [1000/5654 (18%)]	Loss: 0.035495, Accu: 100.00%
+Train Epoch: 81 [2000/5654 (35%)]	Loss: 0.033816, Accu: 100.00%
+Train Epoch: 81 [3000/5654 (53%)]	Loss: 0.025574, Accu: 100.00%
+Train Epoch: 81 [4000/5654 (71%)]	Loss: 0.484742, Accu: 90.00%
+Train Epoch: 81 [5000/5654 (88%)]	Loss: 0.000558, Accu: 100.00%
+valid seg acc: 0.634228650137741 
+
+Train Epoch: 82 [1000/5654 (18%)]	Loss: 0.091763, Accu: 95.00%
+Train Epoch: 82 [2000/5654 (35%)]	Loss: 0.001897, Accu: 100.00%
+Train Epoch: 82 [3000/5654 (53%)]	Loss: 0.000200, Accu: 100.00%
+Train Epoch: 82 [4000/5654 (71%)]	Loss: 0.025210, Accu: 100.00%
+Train Epoch: 82 [5000/5654 (88%)]	Loss: 0.221393, Accu: 90.00%
+Train Epoch: 83 [1000/5654 (18%)]	Loss: 0.003560, Accu: 100.00%
+Train Epoch: 83 [2000/5654 (35%)]	Loss: 0.012188, Accu: 100.00%
+Train Epoch: 83 [3000/5654 (53%)]	Loss: 0.083858, Accu: 95.00%
+Train Epoch: 83 [4000/5654 (71%)]	Loss: 0.414390, Accu: 95.00%
+Train Epoch: 83 [5000/5654 (88%)]	Loss: 0.055807, Accu: 100.00%
+Train Epoch: 84 [1000/5654 (18%)]	Loss: 0.001599, Accu: 100.00%
+Train Epoch: 84 [2000/5654 (35%)]	Loss: 0.005579, Accu: 100.00%
+Train Epoch: 84 [3000/5654 (53%)]	Loss: 0.038517, Accu: 95.00%
+Train Epoch: 84 [4000/5654 (71%)]	Loss: 0.035587, Accu: 100.00%
+Train Epoch: 84 [5000/5654 (88%)]	Loss: 0.010253, Accu: 100.00%
+valid seg acc: 0.6160468319559228 
+
+Train Epoch: 85 [1000/5654 (18%)]	Loss: 0.046059, Accu: 100.00%
+Train Epoch: 85 [2000/5654 (35%)]	Loss: 0.001186, Accu: 100.00%
+Train Epoch: 85 [3000/5654 (53%)]	Loss: 0.005516, Accu: 100.00%
+Train Epoch: 85 [4000/5654 (71%)]	Loss: 0.000228, Accu: 100.00%
+Train Epoch: 85 [5000/5654 (88%)]	Loss: 0.065588, Accu: 95.00%
+Train Epoch: 86 [1000/5654 (18%)]	Loss: 0.069796, Accu: 95.00%
+Train Epoch: 86 [2000/5654 (35%)]	Loss: 0.012477, Accu: 100.00%
+Train Epoch: 86 [3000/5654 (53%)]	Loss: 0.024385, Accu: 100.00%
+Train Epoch: 86 [4000/5654 (71%)]	Loss: 0.054258, Accu: 95.00%
+Train Epoch: 86 [5000/5654 (88%)]	Loss: 0.003543, Accu: 100.00%
+Train Epoch: 87 [1000/5654 (18%)]	Loss: 0.047488, Accu: 95.00%
+Train Epoch: 87 [2000/5654 (35%)]	Loss: 0.006043, Accu: 100.00%
+Train Epoch: 87 [3000/5654 (53%)]	Loss: 0.000111, Accu: 100.00%
+Train Epoch: 87 [4000/5654 (71%)]	Loss: 0.010958, Accu: 100.00%
+Train Epoch: 87 [5000/5654 (88%)]	Loss: 0.002840, Accu: 100.00%
+valid seg acc: 0.6372589531680442 
+
+Train Epoch: 88 [1000/5654 (18%)]	Loss: 0.001635, Accu: 100.00%
+Train Epoch: 88 [2000/5654 (35%)]	Loss: 0.023695, Accu: 100.00%
+Train Epoch: 88 [3000/5654 (53%)]	Loss: 0.002683, Accu: 100.00%
+Train Epoch: 88 [4000/5654 (71%)]	Loss: 0.005119, Accu: 100.00%
+Train Epoch: 88 [5000/5654 (88%)]	Loss: 0.149259, Accu: 90.00%
+Train Epoch: 89 [1000/5654 (18%)]	Loss: 0.009249, Accu: 100.00%
+Train Epoch: 89 [2000/5654 (35%)]	Loss: 0.027411, Accu: 100.00%
+Train Epoch: 89 [3000/5654 (53%)]	Loss: 0.004570, Accu: 100.00%
+Train Epoch: 89 [4000/5654 (71%)]	Loss: 0.055731, Accu: 100.00%
+Train Epoch: 89 [5000/5654 (88%)]	Loss: 0.001101, Accu: 100.00%
+Train Epoch: 90 [1000/5654 (18%)]	Loss: 0.004408, Accu: 100.00%
+Train Epoch: 90 [2000/5654 (35%)]	Loss: 0.000949, Accu: 100.00%
+Train Epoch: 90 [3000/5654 (53%)]	Loss: 0.007337, Accu: 100.00%
+Train Epoch: 90 [4000/5654 (71%)]	Loss: 0.030720, Accu: 100.00%
+Train Epoch: 90 [5000/5654 (88%)]	Loss: 0.158954, Accu: 95.00%
+valid seg acc: 0.6303030303030305 
+
+Train Epoch: 91 [1000/5654 (18%)]	Loss: 0.026091, Accu: 100.00%
+Train Epoch: 91 [2000/5654 (35%)]	Loss: 0.012467, Accu: 100.00%
+Train Epoch: 91 [3000/5654 (53%)]	Loss: 0.286117, Accu: 90.00%
+Train Epoch: 91 [4000/5654 (71%)]	Loss: 0.002416, Accu: 100.00%
+Train Epoch: 91 [5000/5654 (88%)]	Loss: 0.000168, Accu: 100.00%
+Train Epoch: 92 [1000/5654 (18%)]	Loss: 0.000603, Accu: 100.00%
+Train Epoch: 92 [2000/5654 (35%)]	Loss: 0.104298, Accu: 95.00%
+Train Epoch: 92 [3000/5654 (53%)]	Loss: 0.000135, Accu: 100.00%
+Train Epoch: 92 [4000/5654 (71%)]	Loss: 0.002209, Accu: 100.00%
+Train Epoch: 92 [5000/5654 (88%)]	Loss: 0.047003, Accu: 100.00%
+Train Epoch: 93 [1000/5654 (18%)]	Loss: 0.042762, Accu: 95.00%
+Train Epoch: 93 [2000/5654 (35%)]	Loss: 0.012796, Accu: 100.00%
+Train Epoch: 93 [3000/5654 (53%)]	Loss: 0.338993, Accu: 95.00%
+Train Epoch: 93 [4000/5654 (71%)]	Loss: 0.083323, Accu: 95.00%
+Train Epoch: 93 [5000/5654 (88%)]	Loss: 0.000829, Accu: 100.00%
+valid seg acc: 0.6449724517906334 
+
+Train Epoch: 94 [1000/5654 (18%)]	Loss: 0.062203, Accu: 95.00%
+Train Epoch: 94 [2000/5654 (35%)]	Loss: 0.017426, Accu: 100.00%
+Train Epoch: 94 [3000/5654 (53%)]	Loss: 0.008340, Accu: 100.00%
+Train Epoch: 94 [4000/5654 (71%)]	Loss: 0.001929, Accu: 100.00%
+Train Epoch: 94 [5000/5654 (88%)]	Loss: 0.001550, Accu: 100.00%
+Train Epoch: 95 [1000/5654 (18%)]	Loss: 0.001015, Accu: 100.00%
+Train Epoch: 95 [2000/5654 (35%)]	Loss: 0.001351, Accu: 100.00%
+Train Epoch: 95 [3000/5654 (53%)]	Loss: 0.003371, Accu: 100.00%
+Train Epoch: 95 [4000/5654 (71%)]	Loss: 0.040716, Accu: 100.00%
+Train Epoch: 95 [5000/5654 (88%)]	Loss: 0.054116, Accu: 95.00%
+Train Epoch: 96 [1000/5654 (18%)]	Loss: 0.013257, Accu: 100.00%
+Train Epoch: 96 [2000/5654 (35%)]	Loss: 0.004961, Accu: 100.00%
+Train Epoch: 96 [3000/5654 (53%)]	Loss: 0.178166, Accu: 95.00%
+Train Epoch: 96 [4000/5654 (71%)]	Loss: 0.134363, Accu: 95.00%
+Train Epoch: 96 [5000/5654 (88%)]	Loss: 0.011688, Accu: 100.00%
+valid seg acc: 0.6258953168044075 
+
+Train Epoch: 97 [1000/5654 (18%)]	Loss: 0.000868, Accu: 100.00%
+Train Epoch: 97 [2000/5654 (35%)]	Loss: 0.014092, Accu: 100.00%
+Train Epoch: 97 [3000/5654 (53%)]	Loss: 0.008357, Accu: 100.00%
+Train Epoch: 97 [4000/5654 (71%)]	Loss: 0.016152, Accu: 100.00%
+Train Epoch: 97 [5000/5654 (88%)]	Loss: 0.210668, Accu: 95.00%
+Train Epoch: 98 [1000/5654 (18%)]	Loss: 0.018133, Accu: 100.00%
+Train Epoch: 98 [2000/5654 (35%)]	Loss: 0.018145, Accu: 100.00%
+Train Epoch: 98 [3000/5654 (53%)]	Loss: 0.114328, Accu: 95.00%
+Train Epoch: 98 [4000/5654 (71%)]	Loss: 0.104023, Accu: 95.00%
+Train Epoch: 98 [5000/5654 (88%)]	Loss: 0.014565, Accu: 100.00%
+Train Epoch: 99 [1000/5654 (18%)]	Loss: 0.000982, Accu: 100.00%
+Train Epoch: 99 [2000/5654 (35%)]	Loss: 0.031285, Accu: 100.00%
+Train Epoch: 99 [3000/5654 (53%)]	Loss: 0.007341, Accu: 100.00%
+Train Epoch: 99 [4000/5654 (71%)]	Loss: 0.005349, Accu: 100.00%
+Train Epoch: 99 [5000/5654 (88%)]	Loss: 0.038183, Accu: 100.00%
+valid seg acc: 0.6455922865013775 
+
+Train Epoch: 100 [1000/5654 (18%)]	Loss: 0.001383, Accu: 100.00%
+Train Epoch: 100 [2000/5654 (35%)]	Loss: 0.000382, Accu: 100.00%
+Train Epoch: 100 [3000/5654 (53%)]	Loss: 0.044254, Accu: 100.00%
+Train Epoch: 100 [4000/5654 (71%)]	Loss: 0.064591, Accu: 95.00%
+Train Epoch: 100 [5000/5654 (88%)]	Loss: 0.001514, Accu: 100.00%
