@@ -32,14 +32,6 @@ data_feat, data_labels = load_data( train_split, actions_dict, GT_folder, DATA_f
 validation_split = os.path.join(COMP_PATH, 'splits/val.split1.bundle') #Validation split
 val_data_feat, val_data_labels = load_data( validation_split, actions_dict, GT_folder, DATA_folder, datatype = split) #Get features and labels
 
-epochs = 400
-batch_size = 50
-
-model = LSTM_Model()
-learning_rate = 1e-3
-log_interval = 30
-
-
 def train(log_interval, model, device, train_loader, optimizer, epoch):
     model.train()
 
@@ -104,6 +96,11 @@ def validation(model, device, test_loader):
 
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
+epochs = 400
+batch_size = 50
+
+learning_rate = 1e-3
+log_interval = 30
 
 lstm = LSTM_Model(hidden_rnn_layers = 2, hidden_rnn_nodes = 348, bidirectional=False, fc_dim=128, I3D_feature_size = 400,
                  dropout_rate=0.3, output_size=48).double().to(device)
@@ -128,7 +125,7 @@ for epoch in range(epochs):
     #    test_score = validation(lstm, device, val_dataloader)
     #    epoch_test_scores.append(test_score)
     if (epoch + 1) > 100 and (epoch + 1) % 20 == 0:
-        torch.save(model, f"./trained/lstm/lstm_" + str(epoch + 1) + ".pkl")
+        torch.save(lstm, f"./trained/lstm/lstm_" + str(epoch + 1) + ".pkl")
 
 date = datetime.datetime.now().date()
 A = np.array(epoch_train_losses)
