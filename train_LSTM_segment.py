@@ -128,7 +128,7 @@ for epoch in range(epochs):
     #    test_score = validation(lstm, device, val_dataloader)
     #    epoch_test_scores.append(test_score)
     if (epoch + 1) > 100 and (epoch + 1) % 20 == 0:
-        torch.save(model.state_dict(), "./trained/lstm/lstm_" + str(epoch + 1) + ".pt")
+        torch.save(model, f"./trained/lstm/lstm_" + str(epoch + 1) + ".pkl")
 
 date = datetime.datetime.now().date()
 A = np.array(epoch_train_losses)
