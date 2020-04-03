@@ -5,8 +5,8 @@ import torch.nn.utils as u
 
 
 class LSTM_Model(nn.Module):
-    def __init__(self, I3D_feature_size = 400, hidden_rnn_layers = 3, hidden_rnn_nodes = 256, fc_dim = 128,
-                 dropout_rate=0.3, output_size=48, bidirectional = False):
+    def __init__(self, I3D_feature_size, hidden_rnn_layers, hidden_rnn_nodes, fc_dim,
+                 dropout_rate, output_size, bidirectional):
         super(LSTM_Model, self).__init__()
 
         self.input_size = I3D_feature_size

@@ -105,7 +105,8 @@ def validation(model, device, test_loader):
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
 
-lstm = LSTM_Model(hidden_rnn_layers = 2, hidden_rnn_nodes = 368, bidirectional=False, fc_dim=128).double().to(device)
+lstm = LSTM_Model(hidden_rnn_layers = 2, hidden_rnn_nodes = 348, bidirectional=False, fc_dim=128, I3D_feature_size = 400,
+                 dropout_rate=0.3, output_size=48).double().to(device)
 optimizer = torch.optim.Adam(list(lstm.parameters()), lr=learning_rate, weight_decay=1e-6)
 
 # record training process
