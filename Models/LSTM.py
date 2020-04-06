@@ -32,7 +32,7 @@ class LSTM_Model(nn.Module):
     def forward(self, x):
         self.LSTM.flatten_parameters()
         rnn_out, (h_n, h_c) = self.LSTM(x, None)
-        rnn_out, input_sizes = u.rnn.pad_packed_sequence(rnn_out, batch_first=True)
+        #rnn_out, input_sizes = u.rnn.pad_packed_sequence(rnn_out, batch_first=True)
 
         x = self.fc1(rnn_out[:,-1,:])
         x = F.relu(x)
