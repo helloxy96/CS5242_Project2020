@@ -14,6 +14,9 @@ import matplotlib.pyplot as plt
 import torch.nn as nn
 import sys
 
+from utils.data import get_file_split
+
+
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
 batch_size = 20
@@ -21,9 +24,12 @@ batch_size = 20
 def evaluation(model, val_dataloader, type='segment'):
 
     predict_labels = []
+    top_5_predict_labels = []
     groundTruth_labels = []
+    outputs = []
 
     predict_scores = []
+    top_5_scores = []
 
     model.eval()
     for x, labels in val_dataloader:
@@ -33,12 +39,29 @@ def evaluation(model, val_dataloader, type='segment'):
             output = model(x).to(device)
             output = output.view(-1, 48)
             predict_label = torch.max(output, 1)[1]
+            labels = labels.flatten()
+            top_5_predict_label = torch.topk(output, k=5, dim=1)[1]
+            outputs.extend(output.tolist())
+
+        top_5_scores.append(torch.sum(top_5_predict_label == labels.unsqueeze(dim=1)).item())
+        top_5_predict_labels.extend(top_5_predict_label.tolist())
+
 
         labels = labels.cpu().data.squeeze().numpy()
         predict_label = predict_label.long().cpu().data.squeeze().numpy()
 
         # frame check
-        step_score = accuracy_score(labels, predict_label)
+        # print(labels, predict_label, labels)
+        
+        if labels.size > 1:
+            #step_score = accuracy_score(labels, predict_label)
+            step_score = np.sum(labels == predict_label)
+        else:
+            step_score = 1 if labels == predict_label else 0
+            labels = np.array([labels])
+            predict_label = np.array([predict_label])
+            # print(predict_label, labels)
+
         # print('step score', step_score)
         predict_scores.append(step_score)
         
@@ -97,49 +120,34 @@ def evaluation(model, val_dataloader, type='segment'):
 
     # if segment type, evalute seg acc directly
     elif type == 'segment':
-        seg_acc = sum(predict_scores) / len(predict_scores)
+        seg_acc = sum(predict_scores) / len(predict_labels)
+        top_5_seg_scc = sum(top_5_scores) / len(predict_labels)
 
         # result
         res = {
             'seg': {
                 'acc': seg_acc,
                 'predict': predict_labels,
-                'groundTruth': groundTruth_labels
+                'groundTruth': groundTruth_labels,
+                'output': outputs
             }
         }
 
         print('valid seg acc:', seg_acc, '\n')
+        print('valid top_5_seg_scc:', top_5_seg_scc, '\n')
 
     return res
 
-def get_each_file_acc(predict, groundTruth, split_load, actions_dict, GT_folder):
+def get_each_file_acc(predict, groundTruth, file_splits, split_load):
     file_ptr = open(split_load, 'r')
     content_all = file_ptr.read().split('\n')[1:-1]
     content_all = [x.strip('./data/groundTruth/') + 't' for x in content_all]
     all_tasks = ['tea', 'cereals', 'coffee', 'friedegg', 'juice', 'milk', 'sandwich', 'scrambledegg', 'pancake', 'salat']
 
-    seg_nums_in_all_files = []
-    for content in content_all:
-        file_ptr = open(GT_folder + content, 'r')
-        curr_gt = file_ptr.read().split('\n')[:-1]
-        label_curr_video = []
-
-        for iik in range(len(curr_gt)):
-            label_curr_video.append(actions_dict[curr_gt[iik]])
-        
-        seg_num_in_a_file = 0
-        for i in range(1, len(label_curr_video)):
-            label = label_curr_video[i]
-            last_label = label_curr_video[i-1]
-
-            if last_label != label:
-                seg_num_in_a_file += 1
-        seg_nums_in_all_files.append(seg_num_in_a_file-1)
-
     # get each file acc
     s_index = 0
-    print(len(seg_nums_in_all_files), len(content_all))
-    for i, num in enumerate(seg_nums_in_all_files):
+    print(len(file_splits), len(content_all))
+    for i, num in enumerate(file_splits):
         f_predict = predict[s_index:s_index+num]
         f_groundTruth = groundTruth[s_index:s_index+num]
 
@@ -173,6 +181,80 @@ def get_dataloader(type='segment'):
     )
     return valid_dataloader
 
+def eval_with_probmat(outputs, groundTruths, prob_mat, file_splits):
+    s_index = 0
+    new_outputs = []
+    new_labels = []
+
+    outputs = torch.tensor(outputs).to(device)
+
+    correct = 0
+    for f_split in file_splits:
+        f_outputs = outputs[s_index:s_index+f_split]
+        f_gt = groundTruths[s_index:s_index+f_split]
+
+        for i, seg_output in enumerate(f_outputs):
+            seg_prob = torch.zeros(48).to(device)
+            for j, other_seg_output in enumerate(f_outputs):
+                if i != j:
+                    other_seg_label = torch.max(other_seg_output, 0)[1].item()
+                    seg_prob += prob_mat[other_seg_label]
+
+            new_output = seg_output + (seg_prob / len(f_outputs))
+            new_label = torch.max(new_output, 0)[1].item()
+            old_label = torch.max(seg_output, 0)[1].item()
+
+            if new_label != old_label:
+                print('old top 5', seg_output.topk(5)[1])
+                print('new top 5', new_output.topk(5)[1])
+                print('old top 5 loss', seg_output.topk(5)[0])
+                print('new top 5 loss', new_output.topk(5)[0])
+
+                print('change label', old_label, 'to', new_label)
+                print('groundtruth', f_gt[i], '\n')
+            if new_label == f_gt[i]:
+                correct += 1
+            new_labels.append(new_label)
+
+        s_index += f_split
+    
+    print('seg acc:', correct / len(groundTruths) )
+
+    res = {
+        'predict': new_labels,
+        'groundTruth': groundTruths 
+    }
+    return res
+
+def get_each_label_acc(predict, groundTruth):
+    labels_total = torch.zeros(48)
+    labels_correct = torch.zeros(48)
+    labels_wrong_dict = {}
+
+    labels_wrong_dict[0] = {}
+    for i, p in enumerate(predict):
+        label = groundTruth[i]
+        labels_total[label] +=1
+
+        if p == label:
+            labels_correct[label] += 1
+        else:
+            if label not in labels_wrong_dict:
+                labels_wrong_dict[label] = {}
+            if p not in labels_wrong_dict[label]:
+                labels_wrong_dict[label][p] = 0
+            labels_wrong_dict[label][p] += 1
+
+    labels_acc = labels_correct / labels_total
+    sorted_, indexs = torch.sort(labels_acc, descending=True)
+
+    print('\nsorted acc')
+    for i in range(len(indexs)):
+        label = indexs[i].item()
+        print(f'\nlabel {label} acc: {sorted_[i]}')
+        print(f'groundTruth {label} but predict as: \n', labels_wrong_dict[label])
+        
+
 
 COMP_PATH = './'
 split = 'training'
@@ -196,12 +278,29 @@ if __name__ == "__main__":
 
     res = evaluation(model, dataloader)
 
+    # prob_mat = torch.load('./trained/conv/prob_mat.pt', map_location=torch.device(device))
+
+    file_splits = get_file_split(val_split, GT_folder, actions_dict)
+
+    # res_with_probmat = eval_with_probmat(res['seg']['output'], res['seg']['groundTruth'],prob_mat, file_splits)
+
     get_each_file_acc(
         res['seg']['predict'],
         res['seg']['groundTruth'],
-        val_split,
-        actions_dict,
-        GT_folder,
+        file_splits,
+        val_split
+    )
+
+    # get_each_file_acc(
+    #     res_with_probmat['predict'],
+    #     res_with_probmat['groundTruth'],
+    #     file_splits,
+    #     val_split
+    # )
+
+    get_each_label_acc(
+        res['seg']['predict'],
+        res['seg']['groundTruth']
     )
 
     seg_res = np.concatenate((

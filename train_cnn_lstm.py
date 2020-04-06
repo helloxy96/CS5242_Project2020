@@ -3,12 +3,12 @@ from utils.read_datasetBreakfast import load_data, read_mapping_dict
 import os
 import numpy as np
 import torch
-from Dataset.SegmentDataset import SegmentDataset
+from Dataset.FileDataset import FileDataset
 
 import torch.utils.data as tud
 from torch.utils.data.sampler import WeightedRandomSampler
 
-from Models.Conv import model
+from Models.CNN_LSTM import Combine
 import torch.nn.functional as F
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
@@ -20,7 +20,7 @@ import random
 from imblearn.over_sampling import SMOTE
 
 
-torch.cuda.set_device(3)
+torch.cuda.set_device(1)
 
 COMP_PATH = ''
 
@@ -40,8 +40,8 @@ mapping_loc =  os.path.join(COMP_PATH, 'splits/mapping_bf.txt')
 
 actions_dict = read_mapping_dict(mapping_loc)
 
-data_feat, data_labels = load_data( train_split, actions_dict, GT_folder, DATA_folder, datatype = split) #
-valid_feat, valid_labels = load_data( val_split, actions_dict, GT_folder, DATA_folder, datatype = split) #
+data_feat, data_labels = load_data( train_split, actions_dict, GT_folder, DATA_folder, datatype = split, target='file') #
+valid_feat, valid_labels = load_data( val_split, actions_dict, GT_folder, DATA_folder, datatype = split, target='file') #
 
 # balance data
 # label_dict = b.generate_label_dictionary(data_feat, data_labels)
@@ -62,38 +62,40 @@ device = torch.device("cuda" if cuda_avail else "cpu")
 # loss_weights = ((normalization) / loss_weights).double()
 
 # use weighted sampler
-weights = torch.ones(48)
-for label in data_labels:
-    weights[label] += 1
+# weights = torch.ones(48)
+# for label in data_labels:
+#     weights[label] += 1
 
-weights = (1. / weights).double().to(device)
+# weights = (1. / weights).double().to(device)
 
-sampler = WeightedRandomSampler(
-    weights=weights,
-    num_samples=len(data_feat),
-    replacement=True
-)
+# sampler = WeightedRandomSampler(
+#     weights=weights,
+#     num_samples=len(data_feat),
+#     replacement=True
+# )
 
 
 # train parameters
 epochs = 120
-batch_size = 20
+batch_size = 1
 
 learning_rate = 1e-3
 log_interval = 50
 valid_interval = 3 # 5 epoch a check
 
 print(len(data_feat), len(data_labels))
+print(len(data_feat[0]), data_labels[0])
+print(data_feat[0][0].shape)
 # dataset
-dataset = SegmentDataset(data_feat, data_labels)
+dataset = FileDataset(data_feat, data_labels)
 dataloader = tud.DataLoader(dataset, 
     batch_size=batch_size, 
-    sampler = sampler,
+    shuffle = True,
     num_workers = 8, 
     pin_memory=True
 )
 
-valid_dataset = SegmentDataset(valid_feat, valid_labels, seed = 2)
+valid_dataset = FileDataset(valid_feat, valid_labels, seed = 2)
 valid_dataloader = tud.DataLoader(valid_dataset, 
     batch_size=batch_size, 
     shuffle=False, 
@@ -104,6 +106,7 @@ valid_dataloader = tud.DataLoader(valid_dataset,
 
 
 # model and optimizer
+model = Combine()
 model = model.to(device).double()
 optimizer = torch.optim.Adam(list(model.parameters()), lr=learning_rate)
 
@@ -155,7 +158,7 @@ for epoch in range(epochs):
 
     # 30 pick 1
     seed = random.randint(0, 30)
-    dataset = SegmentDataset(data_feat, data_labels, seed=seed)
+    dataset = FileDataset(data_feat, data_labels, seed=seed)
     dataloader = tud.DataLoader(dataset, 
         batch_size=batch_size, 
         shuffle=True, 
@@ -186,13 +189,13 @@ D = np.array(epoch_test_seg_scores)
 dt = datetime.now()
 timestamp = str(dt.date()) + '-' +str(dt.hour)
 
-np.save(f'./results/conv/training_losses_{timestamp}.npy', A)
-np.save(f'./results/conv/training_scores_{timestamp}.npy', B)
+np.save(f'./results/cnn_lstm/training_losses_{timestamp}.npy', A)
+np.save(f'./results/cnn_lstm/training_scores_{timestamp}.npy', B)
 
-np.save(f'./results/conv/test_frame_scores_{timestamp}.npy', C)
-np.save(f'./results/conv/test_seg_scores_{timestamp}.npy', D)
+np.save(f'./results/cnn_lstm/test_frame_scores_{timestamp}.npy', C)
+np.save(f'./results/cnn_lstm/test_seg_scores_{timestamp}.npy', D)
 
-torch.save(model, f'./trained/conv/train_sampler_{timestamp}.pkl')
+torch.save(model, f'./trained/cnn_lstm/addfc_{timestamp}.pkl')
 
 
 

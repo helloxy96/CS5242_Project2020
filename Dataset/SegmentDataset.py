@@ -41,14 +41,14 @@ class SegmentDataset(tud.Dataset):
             piece_segs = 50
 
             # < 50 need repeat to extend
-            while len(feat) < piece_segs:
+            while len(feat) < piece_len * piece_segs:
                 feat = feat.repeat(2, 1)
             # feat = feat.repeat(math.ceil(len(feat) / piece_segs) + 1, 1)
 
             step = math.floor(len(feat) / piece_segs)
 
             # random sample from a seg
-            seg_range = range(len(feat))
+            seg_range = range(len(feat)-piece_len + 1)
 
             if self.random_seed:
                 random.seed(self.random_seed)

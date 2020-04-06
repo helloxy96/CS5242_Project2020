@@ -41,6 +41,19 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
         
         if target == 'frame':
             return data_breakfast, labels_breakfast
+        elif target == 'file':
+            data_breakfast_segments = []
+            labels_breakfast_segments = []
+            for i in range(len(data_breakfast)):
+                file_segments = []
+                file_labels = []
+                idx = labels_uniq_loc[i]
+                for x in range(len(idx) - 1):
+                    file_segments.append(data_breakfast[i][int(idx[x]): int(idx[x + 1])])
+                    file_labels.append((labels_uniq[i][x]))
+                data_breakfast_segments.append(file_segments)
+                labels_breakfast_segments.append(file_labels)
+            return data_breakfast_segments, labels_breakfast_segments
         else:
             data_breakfast_segments = []
             labels_breakfast_segments = []
