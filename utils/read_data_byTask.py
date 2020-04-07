@@ -62,16 +62,39 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
     if datatype == 'test':
         data_breakfast = {task:[] for task in task_all}
         
-        segment = []
-        for content in content_all:
+        test_seg_list = get_test_seq()
+        for idx, content in enumerate(content_all):
 
             task = re.findall('_([a-z]*?).txt', content)[0]    # task: cereals
+            seg_list = test_seg_list[idx]
+
             loc_curr_data = DATA_folder + os.path.splitext(content)[0] + '.gz'
             curr_data = np.loadtxt(loc_curr_data, dtype='float32')
+            
+            data_by_seg = []
+            for seg_idx in range(len(seg_list)+1):
+                if seg_idx == 0:
+                    data_by_seg.append(curr_data[:seg_list[seg_idx]])
+                elif seg_idx == len(seg_list):
+                    data_by_seg.append(curr_data[seg_list[seg_idx-1]:])
+                else:
+                    data_by_seg.append(curr_data[seg_list[seg_idx-1]:seg_list[seg_idx]])
                                  
-            data_breakfast[task].append(curr_data)
-        
+            data_breakfast[task].append(data_by_seg)
+            
         return data_breakfast
+
+
+
+def get_test_seq():
+    f = open('../test_segment.txt', 'r+', newline='\n')
+    all_segs = f.read().splitlines()
+    test_seg_list = []
+    for seg in all_segs:
+        seg_list = seg.split()
+        seg_list = [int(s) for s in seg_list]
+        test_seg_list.append(seg_list)
+    return test_seg_list
 
 
 def get_label_length_seq(content):
@@ -91,6 +114,7 @@ def get_label_length_seq(content):
         label_seq.append(content[-1])
     
     return label_seq, length_seq
+
 
 def read_mapping_dict(mapping_file):
     file_ptr = open(mapping_file, 'r')
