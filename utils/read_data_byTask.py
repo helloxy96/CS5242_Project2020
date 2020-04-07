@@ -12,9 +12,18 @@ def _isArrayLike(obj):
  
 def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'training'):
     """
-    return: data_breakfast, dict, keys are tasks
-            labels_breakfast, dict, only for training, keys are tasks
+
+    :param split_load:
+    :param actions_dict:
+    :param GT_folder:
+    :param DATA_folder:
+    :param datatype:
+    :return: data_breakfast, dict, keys are tasks  [video[segment[frame]]]
+                {'cereals':[[[array(...)], [array(...)]]]}
+            labels_breakfast, dict, only for training, keys are tasks   [video[segment[frame]]]
+                {'cereals':[[[0,0,2,4...], [0,0,5,5....]]}
     """
+
     file_ptr = open(split_load, 'r')
     content_all = file_ptr.read().split('\n')[1:-1]
     content_all = [x.strip('./data/groundTruth/') + 't' for x in content_all]
@@ -34,11 +43,19 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
             loc_curr_data = DATA_folder + os.path.splitext(content)[0] + '.gz'
             curr_data = np.loadtxt(loc_curr_data, dtype='float32')
             label_curr_video = []
+
             for iik in range(len(curr_gt)):
                 label_curr_video.append(actions_dict[curr_gt[iik]])
 
-            data_breakfast[task].append(curr_data)
-            labels_breakfast[task].append(label_curr_video)
+            label_seq, length_seq = get_label_length_seq(label_curr_video)
+            data_by_seg = []
+            label_by_seg = []
+            for seg_idx in range(len(length_seq)-1):
+                data_by_seg.append(curr_data[length_seq[seg_idx]:length_seq[seg_idx+1]])
+                label_by_seg.append(label_curr_video[length_seq[seg_idx]:length_seq[seg_idx+1]])
+                
+            data_breakfast[task].append(data_by_seg)
+            labels_breakfast[task].append(label_by_seg)
 
         return data_breakfast, labels_breakfast
         
@@ -55,6 +72,25 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
             data_breakfast[task].append(curr_data)
         
         return data_breakfast
+
+
+def get_label_length_seq(content):
+    label_seq = []
+    length_seq = []
+    start = 0
+    length_seq.append(0)
+    for i in range(len(content)):
+        if content[i] != content[start]:
+            label_seq.append(content[start])
+            length_seq.append(i)
+            start = i
+    label_seq.append(content[start])
+    length_seq.append(len(content))
+    
+    if content[-1] != 0:
+        label_seq.append(content[-1])
+    
+    return label_seq, length_seq
 
 def read_mapping_dict(mapping_file):
     file_ptr = open(mapping_file, 'r')
