@@ -12,7 +12,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import torch.nn as nn
 import sys
-from utils.data import get_file_split_by_segtxt
+from utils.data import get_file_split_by_segtxt, get_max_prob_seg_seq
 
 cuda_avail = torch.cuda.is_available()
 device = torch.device("cuda" if cuda_avail else "cpu")
@@ -40,9 +40,10 @@ def test(model, test_dataloader, type='segment', prob_mat=None, file_splits=None
 
         predict_labels.extend(predict_label.tolist())
 
+    new_predict_labels = []
     if prob_mat is not None:
         # add prob mat
-        predict_labels = []
+        
         s_index = 0
 
         print('use prob mat')
@@ -52,22 +53,14 @@ def test(model, test_dataloader, type='segment', prob_mat=None, file_splits=None
             f_outputs = outputs[s_index:s_index+f_split]
             f_old_predicts = predict_labels[s_index:s_index+f_split]
 
-            for i, seg_output in enumerate(f_outputs):
-                seg_prob = torch.zeros(48).to(device)
-                for j, other_seg_output in enumerate(f_outputs):
-                    if i != j:
-                        other_seg_label = torch.max(other_seg_output, 0)[1].item()
-                        seg_prob += prob_mat[other_seg_label]
+            new_label = get_max_prob_seg_seq(f_outputs, prob_mat) 
 
-                new_output = seg_output + (seg_prob / len(f_outputs))
-                new_label = torch.max(new_output, 0)[1].item()
-                predict_labels.append(new_label)
+            new_predict_labels.extend(new_label)
 
-                if new_label != f_old_predicts[i]:
-                    print(f'change {f_old_predicts[i]} to {new_label}')
+            if new_label != f_old_predicts:
+                print(f'change {f_old_predicts} to {new_label}')
 
             s_index += f_split
-
 
     # if frame, evaluate frame and seg acc at the same time
     if type == 'frame':
@@ -75,7 +68,10 @@ def test(model, test_dataloader, type='segment', prob_mat=None, file_splits=None
         pass
     # if segment type, evalute seg acc directly
     elif type == 'segment':
-        res = predict_labels
+        if len(new_predict_labels) > 0:
+            res = new_predict_labels
+        else:
+            res = predict_labels
 
     return res
 
@@ -127,14 +123,14 @@ if __name__ == "__main__":
     test_splits = get_file_split_by_segtxt(test_seg_txt)
 
 
-    # prob_mat = torch.load('./trained/conv/prob_mat.pt', map_location=torch.device(device))
+    prob_mat = torch.load('./trained/conv/prob_mat_next.pt', map_location=torch.device(device))
 
-    # res = test(model, dataloader, type=model_type, prob_mat = prob_mat, file_splits = test_splits)
-    res = test(model, dataloader, type=model_type)
+    res = test(model, dataloader, type=model_type, prob_mat = prob_mat, file_splits = test_splits)
+    # res = test(model, dataloader, type=model_type)
 
 
     # save result
-    path = './results/conv/test_result-0406-balance.csv'
+    path = './results/conv/test_result-0407-prob.csv'
     f = open(path, 'w+')
     f.write('Id,Category\n')
 

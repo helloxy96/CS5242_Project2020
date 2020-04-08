@@ -44,27 +44,84 @@ def get_file_split(bundle_path, GT_folder, actions_dict):
     return seg_nums_in_all_files
 
 def get_class_prob_matrix(files_labels, file_splits):
-    count_mat = torch.ones(48, 48)
+    count_mat = torch.zeros(48, 48)
     total_mat = torch.zeros(48)
-    total_mat.fill_(48)
+    # total_mat.fill_(48)
     
     s_index = 0
     for f_splits in file_splits:
         f_labels = files_labels[s_index:s_index+f_splits]
 
-        for i, f_label in enumerate(f_labels):
+        for i in range(len(f_labels)-1):
+            f_label = f_labels[i]
+            next_label = f_labels[i+1]
+
             total_mat[f_label] += 1
-            for j, other_f_label in enumerate(f_labels):
-                if i != j:
-                    count_mat[f_label][other_f_label] += 1
+            count_mat[f_label][next_label] += 1
 
         s_index += f_splits
 
     prob_mat = count_mat / total_mat.unsqueeze(dim=0).permute(1, 0)
 
+    mask = (torch.isnan(prob_mat)) | (prob_mat == 0)
+    avg_prob = torch.mean(prob_mat[~mask])
+    prob_mat[mask] = avg_prob / 3
+
     return prob_mat
 
+def normalize(x,dim=1):
+    # maxmin normalize
+    _min = x.min(dim, keepdim=True)[0]
+    _max = x.max(dim, keepdim=True)[0]
+
+    res = (x-_min) / (_max-_min)
+
+    if len(_min.shape) == 2:
+        mask = (_min == _max).squeeze(dim=1)
+        res[mask] = 1.0 / res.shape[1]
+    else:
+        if _min == _max:
+            res[:] = 1.0 / res.shape[0]
+
+    return res
+
+def get_max_prob_seg_seq(outputs, prob_mat):
+    device = outputs.device
+    # 48
+    action_nums = prob_mat.shape[0]
+    f = torch.zeros(len(outputs), action_nums).to(device)
+    record = torch.zeros(len(outputs), action_nums).to(device).long()
+    norm_prob_mat = normalize(prob_mat, dim=1)
+
+    for i, i_prob in enumerate(outputs):
+        norm_i_prob = normalize(i_prob, dim=0)
+
+        if i == 0:
+            f[i] = i_prob
+        else:
+            for j in range(action_nums):
+                last_to_j_max_prob, last_j = torch.max(f[i-1] + torch.log(prob_mat[:, j]), 0)
+                f[i][j] = last_to_j_max_prob + i_prob[j]
+                # print(last_to_j_max_prob, i_prob[j])
+                record[i][j] = last_j
+        # f[i] = normalize(f[i],dim=0)
+
+    # get final max prob
+    max_final_prob, max_final_action = torch.max(f[len(outputs)-1], 0)
+
+    # get max prob seq
+    seq = [max_final_action.item()]
+    for k in reversed(range(1, len(outputs))):
+        last_action = record[k][max_final_action]
+        seq.append(last_action.item())
+        max_final_action = last_action
+    
+    seq.reverse()
+    return seq
+
 if __name__ == '__main__':
+    from .read_datasetBreakfast import load_data, read_mapping_dict
+
     COMP_PATH = '../'
 
     ''' 
@@ -89,4 +146,4 @@ if __name__ == '__main__':
     prob_mat = get_class_prob_matrix(data_labels, file_splits)
 
     print(prob_mat)
-    torch.save(prob_mat, '../trained/conv/prob_mat.pt')
+    torch.save(prob_mat, '../trained/conv/prob_transform_mat.pt')
