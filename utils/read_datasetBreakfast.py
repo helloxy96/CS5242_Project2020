@@ -7,7 +7,8 @@ Created on Tue Jul 23 12:58:28 2019
 import os  
 import torch
 import numpy as np
-import os.path 
+import os.path
+import re
  
  
 def _isArrayLike(obj):
@@ -80,6 +81,28 @@ def load_data(split_load, actions_dict, GT_folder, DATA_folder, datatype = 'trai
             
         
         return data_breakfast
+
+def load_testdata(split_load, DATA_folder):
+    data_breakfast = []
+
+    file_ptr = open(split_load, 'r')
+    content_all = file_ptr.read().split('\n')[1:-1]
+    content_all = [x.strip('./data/groundTruth/') + 't' for x in content_all]
+    all_tasks = ['tea', 'cereals', 'coffee', 'friedegg', 'juice', 'milk', 'sandwich', 'scrambledegg', 'pancake',
+                 'salat']
+    for content in content_all:
+        # file_ptr = open( GT_folder + content, 'r')
+        # curr_gt = file_ptr.read().split('\n')[:-1]
+        task = re.findall('_([a-z]*?).txt', content)[0]
+
+        loc_curr_data = DATA_folder + os.path.splitext(content)[0] + '.gz'
+
+        curr_data = np.loadtxt(loc_curr_data, dtype='float32')
+
+        data_breakfast.append((task, torch.tensor(curr_data, dtype=torch.float64)))
+    print("Finish Load the Test data!!!")
+
+    return data_breakfast
 
 
 def get_label_bounds( data_labels):
