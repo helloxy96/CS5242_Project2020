@@ -53,7 +53,7 @@ class TestDataset(tud.Dataset):
            # take pieces from segment
             # get 50 pieces
             # a piece with fixed length, 1
-            piece_len = 2
+            piece_len = 1
             piece_segs = 50
 
             # < 50 need copy to extend
@@ -64,7 +64,7 @@ class TestDataset(tud.Dataset):
             step = math.floor(len(feat) / piece_segs)
 
             # random sample from a seg
-            seg_range = range(len(feat)-piece_len)
+            seg_range = range(len(feat)-piece_len + 1)
 
             # fix random seed
             if self.random_seed:
@@ -92,6 +92,6 @@ class TestDataset(tud.Dataset):
         segment = torch.cat(self.x[idx]).double()
 
         # transform
-        segment = segment.permute(1, 0)
+        segment = segment.permute(1, 0).contiguous()
 
         return segment

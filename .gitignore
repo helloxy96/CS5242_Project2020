@@ -1,5 +1,8 @@
 /Data/
 __pycache__
-/log/conv/
-/log/cnn_lstm/
 /results/fc/
+/log
+results/
+trained/
+
+run.sh

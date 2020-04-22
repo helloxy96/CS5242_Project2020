@@ -5,7 +5,7 @@ import random
 import copy
 
 class SegmentDataset(tud.Dataset):
-    def __init__(self, raw_segs, raw_labels, seed=None):
+    def __init__(self, raw_segs, raw_labels, seed=None, chop_num=0):
         super(SegmentDataset, self).__init__()
         self.raw_segs = raw_segs
         self.raw_labels = raw_labels
@@ -14,6 +14,7 @@ class SegmentDataset(tud.Dataset):
 
         self.labels = []
         self.segments = []
+
         self.segments, self.labels = self.process(raw_segs, raw_labels)
 
     def __len__(self):
@@ -29,18 +30,18 @@ class SegmentDataset(tud.Dataset):
             if data_labels[i] == 0:
                 continue 
 
-            # less than 1s, skip
+            # less than 5 frames, skip
             if len(feat) < 5:
                 print('ignore', i, len(feat))
                 continue
 
             # take pieces from segment
-            # get 50 pieces
+            # get 100 pieces
             # a piece with fixed length, 1
             piece_len = 1
-            piece_segs = 50
+            piece_segs = 100
 
-            # < 50 need repeat to extend
+            # < 100 need repeat to extend
             while len(feat) < piece_len * piece_segs:
                 feat = feat.repeat(2, 1)
             # feat = feat.repeat(math.ceil(len(feat) / piece_segs) + 1, 1)
@@ -59,11 +60,6 @@ class SegmentDataset(tud.Dataset):
             for s_i in indexes:
                 item.append(feat[s_i:s_i+piece_len])
             
-            # item = []
-
-            # for s_i in range(piece_segs):
-            #     item.append(feat[s_i*step:s_i*step+piece_len])
-            
             x.append(item)
 
             labels.append(data_labels[i])
@@ -77,6 +73,6 @@ class SegmentDataset(tud.Dataset):
         label = torch.tensor(self.labels[idx]).long()
 
         # transform
-        segment = segment.permute(1, 0)
+        segment = segment.permute(1, 0).contiguous()
 
         return segment, label

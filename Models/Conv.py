@@ -1,60 +1,78 @@
 import torch.nn as nn
+import math
 
 
-model = nn.Sequential(
-    nn.Conv1d(400, 256, 3, stride = 2),
-    nn.BatchNorm1d(256),
-    nn.ReLU(),
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size, stride = 3, chopnum = 1):
+        super(ResidualBlock, self).__init__()
 
-    nn.Conv1d(256, 256, 3, stride = 2),   # batch, chnel,w
-    nn.BatchNorm1d(256),
-    nn.ReLU(),
+        self.conv1 = nn.Conv1d(in_channels, out_channels, kernel_size, stride = stride)
+        self.bn1 = nn.BatchNorm1d(out_channels)
+        self.relu1 = nn.ReLU()
 
-    nn.Conv1d(256, 256, 3, stride = 2),
-    nn.BatchNorm1d(256),
-    nn.ReLU(),
+        self.conv2 = nn.Conv1d(out_channels, out_channels, 1, stride = 1)
+        self.bn2 = nn.BatchNorm1d(out_channels)
+        self.relu2 = nn.ReLU()
 
-    # nn.AdaptiveAvgPool1d(20),
-    # nn.MaxPool1d(2),
+        self.chopnum = chopnum
 
-    # nn.Conv1d(256, 256, 3, stride = 2),   # batch, chnel,w
-    # nn.BatchNorm1d(256),
-    # nn.ReLU(),
+        self.downsample = nn.Conv1d(in_channels, out_channels, 1) if in_channels != out_channels else None
 
-    # nn.Conv1d(256, 256, 3, stride = 2),
-    # nn.BatchNorm1d(256),
-    # nn.ReLU(),
+        self.net = nn.Sequential(
+            self.conv1, self.bn1, self.relu1,
+            self.conv2, self.bn2, self.relu2
+        )
+        self.relu = nn.ReLU()
 
-    nn.AdaptiveAvgPool1d(20),
+        self.init_weights()
 
-    nn.Flatten(),   
-    nn.Linear(5120, 1024), 
-    nn.BatchNorm1d(1024), 
-    nn.ReLU(),
+    def init_weights(self):
+        self.conv1.weight.data.normal_(0, 0.01)
+        self.conv2.weight.data.normal_(0, 0.01)
+        if self.downsample is not None:
+            self.downsample.weight.data.normal_(0, 0.01)
 
-    nn.Linear(1024, 256), 
-    nn.BatchNorm1d(256), 
-    nn.ReLU(),
+    def forward(self, x):
+        chopnum = self.chopnum
+        out = self.net(x)
+        res = x if self.downsample is None else self.downsample(x)
+        res = res[:, :, chopnum//2:-math.ceil(chopnum/2)].contiguous() # x fit into a right size
 
-    nn.Dropout(0.2),
-    nn.Linear(256, 48)
-)
+        return out
 
+class Encoder(nn.Module):
+    def __init__(self, n_inputs = 100):
+        super(Encoder, self).__init__()
 
-seq_model = nn.Sequential(
-    nn.Conv1d(48, 256, 1, stride = 1),
-    nn.BatchNorm1d(256),
-    nn.ReLU(),
+        chopnum1 = (100 - ((100 - 3) // 3 + 1))
+        chopnum2 = (33 - ((33 - 3) // 3 + 1))
+        chopnum3 = (11 - ((11 - 3) // 3 + 1))
+        # chopnum4 = (5 - ((5 - 3) // 3 + 1))
 
-    nn.Conv1d(256, 512, 1, stride = 1),
-    nn.BatchNorm1d(512),
-    nn.ReLU(),
+        layers = [
+            ResidualBlock(400, 256, 3, stride = 3, chopnum=chopnum1),
+            ResidualBlock(256, 256, 3, stride = 3, chopnum=chopnum2),
+            ResidualBlock(256, 256, 3, stride = 3, chopnum=chopnum3),
+            
+            nn.AdaptiveAvgPool1d(3),
 
-    nn.AdaptiveMaxPool1d(1),
+            nn.Flatten(),
 
-    nn.Flatten(),
-    nn.Dropout(0.2),  
-    nn.Linear(512, 128),
-    nn.ReLU(),
-    nn.Linear(128, 48)
-)
+            nn.Linear(768, 1024), 
+            nn.BatchNorm1d(1024), 
+            nn.ReLU(),
+
+            nn.Dropout(0.2),
+            nn.Linear(1024, 48)
+            # ResidualBlock(256, 256, 3, stride = 3, chopnum=chopnum4),
+        ]
+
+        self.network = nn.Sequential(*layers)
+        self.flatten = nn.Flatten()
+
+        
+
+    def forward(self, x):
+        out = self.network(x)
+
+        return self.flatten(out)

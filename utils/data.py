@@ -2,6 +2,7 @@ import torch
 from .read_datasetBreakfast import load_data, read_mapping_dict
 import os
 import numpy as np
+import torch.nn.functional as F
 
 def get_file_split_by_segtxt(seg_info_path):
     splits = []        
@@ -48,16 +49,26 @@ def get_class_prob_matrix(files_labels, file_splits):
     total_mat = torch.zeros(48)
     # total_mat.fill_(48)
     
+    h0_vec = torch.zeros(48)
+
     s_index = 0
+    segs_total = 0
     for f_splits in file_splits:
         f_labels = files_labels[s_index:s_index+f_splits]
 
+        # start label put into h0_vec
+        if len(f_labels) > 0:
+            h0_vec[f_labels[0]] += 1
+
         for i in range(len(f_labels)-1):
+
             f_label = f_labels[i]
             next_label = f_labels[i+1]
 
             total_mat[f_label] += 1
             count_mat[f_label][next_label] += 1
+
+            segs_total += 1
 
         s_index += f_splits
 
@@ -67,7 +78,11 @@ def get_class_prob_matrix(files_labels, file_splits):
     avg_prob = torch.mean(prob_mat[~mask])
     prob_mat[mask] = avg_prob / 3
 
-    return prob_mat
+    h0_vec = h0_vec / segs_total
+    h0_mask = h0_vec == 0
+    h0_vec[h0_mask] = torch.mean(h0_vec[~h0_mask]) / 3
+
+    return prob_mat, h0_vec
 
 def normalize(x,dim=1):
     # maxmin normalize
@@ -85,7 +100,7 @@ def normalize(x,dim=1):
 
     return res
 
-def get_max_prob_seg_seq(outputs, prob_mat):
+def get_max_prob_seg_seq(outputs, prob_mat, h0_vec):
     device = outputs.device
     # 48
     action_nums = prob_mat.shape[0]
@@ -96,8 +111,12 @@ def get_max_prob_seg_seq(outputs, prob_mat):
     for i, i_prob in enumerate(outputs):
         norm_i_prob = normalize(i_prob, dim=0)
 
+        # do softmax on output
+        i_prob = torch.log(F.softmax(i_prob) + 1e-4)
+
+
         if i == 0:
-            f[i] = i_prob
+            f[i] = h0_vec + i_prob
         else:
             for j in range(action_nums):
                 last_to_j_max_prob, last_j = torch.max(f[i-1] + torch.log(prob_mat[:, j]), 0)
@@ -120,7 +139,6 @@ def get_max_prob_seg_seq(outputs, prob_mat):
     return seq
 
 if __name__ == '__main__':
-    from .read_datasetBreakfast import load_data, read_mapping_dict
 
     COMP_PATH = '../'
 
@@ -143,7 +161,9 @@ if __name__ == '__main__':
     data_feat, data_labels = load_data( train_split, actions_dict, GT_folder, DATA_folder, datatype = split) #
     file_splits = get_file_split(train_split, GT_folder, actions_dict)
 
-    prob_mat = get_class_prob_matrix(data_labels, file_splits)
+    prob_mat, h0_vec = get_class_prob_matrix(data_labels, file_splits)
 
     print(prob_mat)
     torch.save(prob_mat, '../trained/conv/prob_transform_mat.pt')
+    print(h0_vec)
+    torch.save(h0_vec, '../trained/conv/prob_h0.pt')
